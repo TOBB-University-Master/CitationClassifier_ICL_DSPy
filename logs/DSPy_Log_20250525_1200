@@ -1,0 +1,1724 @@
+/opt/homebrew/anaconda3/envs/tobb_tez_dspy/bin/python /Users/kemalsamikaraca/Desktop/EĞİTİM/TEZ/CEC/tobb_tez_dspy/dspy_citation_classifier.py
+Uyarı: Trainset için dengeli alt küme oluşturulamadı (sınıflar bulunamadı veya boş).
+Optimizasyonu 11 eğitim örneği ile başlatılıyor...
+Bootstrapping set 1/6
+Bootstrapping set 2/6
+2025/05/25 13:05:28 INFO dspy.teleprompt.mipro_optimizer_v2: 
+RUNNING WITH THE FOLLOWING LIGHT AUTO RUN SETTINGS:
+num_trials: 10
+minibatch: False
+num_fewshot_candidates: 6
+num_instruct_candidates: 3
+valset size: 11
+
+2025/05/25 13:05:28 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2025/05/25 13:05:28 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2025/05/25 13:05:28 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=6 sets of demonstrations...
+ 45%|████▌     | 5/11 [00:12<00:14,  2.44s/it]
+Bootstrapped 1 full traces after 5 examples for up to 1 rounds, amounting to 5 attempts.
+Bootstrapping set 3/6
+ 18%|█▊        | 2/11 [00:04<00:21,  2.41s/it]
+  0%|          | 0/11 [00:00<?, ?it/s]Bootstrapped 2 full traces after 2 examples for up to 1 rounds, amounting to 2 attempts.
+Bootstrapping set 4/6
+Bootstrapped 1 full traces after 1 examples for up to 1 rounds, amounting to 1 attempts.
+Bootstrapping set 5/6
+  9%|▉         | 1/11 [00:02<00:22,  2.25s/it]
+ 27%|██▋       | 3/11 [00:02<00:07,  1.11it/s]
+  0%|          | 0/11 [00:00<?, ?it/s]Bootstrapped 2 full traces after 3 examples for up to 1 rounds, amounting to 3 attempts.
+Bootstrapping set 6/6
+ 27%|██▋       | 3/11 [00:02<00:06,  1.25it/s]
+2025/05/25 13:05:53 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 2: PROPOSE INSTRUCTION CANDIDATES <==
+2025/05/25 13:05:53 INFO dspy.teleprompt.mipro_optimizer_v2: We will use the few-shot examples from the previous step, a generated dataset summary, a summary of the program code, and a randomly selected prompting tip to propose instructions.
+Bootstrapped 1 full traces after 3 examples for up to 1 rounds, amounting to 3 attempts.
+SOURCE CODE: StringSignature(citation, section -> reasoning, intent
+    instructions='You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.\nYour goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:\n1.  **background**:\n    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper\'s core work.\n    * **WoS Insight**: previously published research that orients the current study within a scholarly area.\n    * **Typical Turkish Sections**: \'Giriş\' (Introduction), \'Literatür Taraması\' (Literature Review), \'İlgili Çalışmalar\' (Related Work), \'Genel Bilgiler\' (General Information).\n    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.\n\n2.  **basis**:\n    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.\n    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work\n    * **Typical Turkish Sections**: \'Yöntem\' (Methodology), \'Materyal ve Metot\' (Material and Method), \'Model Tasarımı\' (Model Design), \'Veri Seti\' (Dataset), \'Uygulama\' (Implementation).\n    * **Key Idea**: The current study\'s methodology or execution directly and essentially depends on the content of the cited work.\n\n3.  **discuss**:\n    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work\'s importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.\n    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.\n    * **Typical Turkish Sections**: \'Literatür Taraması\' (Literature Review), \'Tartışma\' (Discussion), \'Bulgular ve Tartışma\' (Results and Discussion), \'İlgili Çalışmalar\' (Related Work).\n    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.\n\n4.  **support**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion), \'Doğrulama\' (Validation).\n    * **Key Idea**: The cited work\'s outcomes lend credibility and support to the current study\'s findings by demonstrating consistency.\n\n5.  **differ**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion).\n    * **Key Idea**: The cited work\'s *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study\'s findings.\n\n6.  **other**:\n    * **Description**: The citation\'s rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don\'t fit any other specific rhetorical function (e.g., a passing mention without clear intent).\n    * **WoS Insight**: Citations that are not classifiable into other specific categories.\n    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.\n\n**Important Considerations for Classification**:\n* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.\n* **Context is Key**: While the \'section\' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the \'citation\' text itself. A citation\'s intent might occasionally differ from its section\'s typical use.\n* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.\n\n**Input Format**:\nEach citation will be provided as a JSON object with the following fields:\n* `id`: A unique identifier for the citation (String).\n* `citation`: The citation sentence or excerpt **in Turkish** (String).\n* `section`: The title of the section in which the citation appears, **in Turkish** (String).\n\nAll citations will be presented as a JSON array.\nExample of Input Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",\n    "section": "Giriş"\n  },\n  {\n    "id": "unique_id_2",\n    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",\n    "section": "Yöntem"\n  }\n]\n\n**Expected Output Format**:\nThe output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.\nExample of Output Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "intent": "background"\n  },\n  {\n    "id": "unique_id_2",\n    "intent": "basis"\n  }\n]\n\nPlease return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.'
+    citation = Field(annotation=str required=True json_schema_extra={'desc': 'Atıf cümlesi', '__dspy_field_type': 'input', 'prefix': 'Citation:'})
+    section = Field(annotation=str required=True json_schema_extra={'desc': 'Bölüm başlığı', '__dspy_field_type': 'input', 'prefix': 'Section:'})
+    reasoning = Field(annotation=str required=True json_schema_extra={'desc': 'Niyet sınıflandırmasının adım adım gerekçesi.', '__dspy_field_type': 'output', 'prefix': 'Reasoning:'})
+    intent = Field(annotation=str required=True json_schema_extra={'desc': "Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'", '__dspy_field_type': 'output', 'prefix': 'Intent:'})
+)
+
+class ClassifyCitation(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.citation_intent_signature = CitationIntentSignature
+        self.classifier = dspy.ChainOfThought(signature=CitationIntentSignature)
+    def forward(self, citation, section):
+        prediction = self.classifier(citation=citation, section=section)
+        return prediction
+
+DATA SUMMARY: The dataset examines Turkish academic and technical writing, providing examples of citations and their intents within different sections of scientific papers such as "Introduction", "Methodology", and "Results". It aims to understand and categorize the role of citations in Turkish scholarly documents, particularly focusing on improving citation analysis and NLP tools for Turkish language processing. This dataset can enhance citation understanding, recommendation, and automatic summarization systems tailored for the Turkish academic context.
+Using a randomly generated configuration for our grounded proposer.
+Selected tip: high_stakes
+2025/05/25 13:06:02 INFO dspy.teleprompt.mipro_optimizer_v2: 
+Proposing N=3 instructions...
+
+PROGRAM DESCRIPTION: The program is designed to classify academic citations from Turkish research papers based on their rhetorical intent. It specifically targets citations in the fields of computer science and artificial intelligence. The classification task involves categorizing each citation into one of six predefined categories: background, basis, discuss, support, differ, or other. These categories are inspired by the Web of Science citation classification schema and have been refined for clarity.
+
+The program operates by analyzing the citation text and the section title in which the citation appears, both of which are provided in Turkish. The classification is based on the semantic content and rhetorical function of the citation, with the section title providing contextual clues. However, the primary basis for classification is the citation's semantic content.
+
+The process is a zero-shot classification task, meaning it does not rely on pre-defined examples for learning. Instead, it uses a pre-defined set of instructions and guidelines to classify the citations. The input is a JSON array of citation objects, each containing an id, citation text, and section title. The output is a JSON array of objects with each citation's id and its classified intent.
+
+The program uses a class `ClassifyCitation` that initializes a classifier with a signature `CitationIntentSignature`. The classifier processes the citation and section input to predict the rhetorical intent, returning a structured JSON output without additional commentary or explanation. This approach ensures a systematic and consistent classification of citations based on their rhetorical roles in academic papers.
+task_demos No task demos provided.
+
+
+
+
+[2025-05-25T13:06:20.815555]
+
+System message:
+
+Your input fields are:
+1. `dataset_description` (str): A description of the dataset that we are using.
+2. `program_code` (str): Language model program designed to solve a particular task.
+3. `program_description` (str): Summary of the task the program is designed to solve, and how it goes about solving it.
+4. `module` (str): The module to create an instruction for.
+5. `module_description` (str): Description of the module to create an instruction for.
+6. `task_demos` (str): Example inputs/outputs of our module.
+7. `basic_instruction` (str): Basic instruction.
+8. `tip` (str): A suggestion for how to go about generating the new instruction.
+Your output fields are:
+1. `proposed_instruction` (str): Propose an instruction that will be used to prompt a Language Model to perform this task.
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## dataset_description ## ]]
+{dataset_description}
+
+[[ ## program_code ## ]]
+{program_code}
+
+[[ ## program_description ## ]]
+{program_description}
+
+[[ ## module ## ]]
+{module}
+
+[[ ## module_description ## ]]
+{module_description}
+
+[[ ## task_demos ## ]]
+{task_demos}
+
+[[ ## basic_instruction ## ]]
+{basic_instruction}
+
+[[ ## tip ## ]]
+{tip}
+
+[[ ## proposed_instruction ## ]]
+{proposed_instruction}
+
+[[ ## completed ## ]]
+In adhering to this structure, your objective is: 
+        Use the information below to learn about a task that we are trying to solve using calls to an LM, then generate a new instruction that will be used to prompt a Language Model to better solve the task.
+
+
+User message:
+
+[[ ## dataset_description ## ]]
+The dataset examines Turkish academic and technical writing, providing examples of citations and their intents within different sections of scientific papers such as "Introduction", "Methodology", and "Results". It aims to understand and categorize the role of citations in Turkish scholarly documents, particularly focusing on improving citation analysis and NLP tools for Turkish language processing. This dataset can enhance citation understanding, recommendation, and automatic summarization systems tailored for the Turkish academic context.
+
+[[ ## program_code ## ]]
+StringSignature(citation, section -> reasoning, intent
+    instructions='You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.\nYour goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:\n1.  **background**:\n    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper\'s core work.\n    * **WoS Insight**: previously published research that orients the current study within a scholarly area.\n    * **Typical Turkish Sections**: \'Giriş\' (Introduction), \'Literatür Taraması\' (Literature Review), \'İlgili Çalışmalar\' (Related Work), \'Genel Bilgiler\' (General Information).\n    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.\n\n2.  **basis**:\n    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.\n    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work\n    * **Typical Turkish Sections**: \'Yöntem\' (Methodology), \'Materyal ve Metot\' (Material and Method), \'Model Tasarımı\' (Model Design), \'Veri Seti\' (Dataset), \'Uygulama\' (Implementation).\n    * **Key Idea**: The current study\'s methodology or execution directly and essentially depends on the content of the cited work.\n\n3.  **discuss**:\n    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work\'s importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.\n    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.\n    * **Typical Turkish Sections**: \'Literatür Taraması\' (Literature Review), \'Tartışma\' (Discussion), \'Bulgular ve Tartışma\' (Results and Discussion), \'İlgili Çalışmalar\' (Related Work).\n    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.\n\n4.  **support**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion), \'Doğrulama\' (Validation).\n    * **Key Idea**: The cited work\'s outcomes lend credibility and support to the current study\'s findings by demonstrating consistency.\n\n5.  **differ**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion).\n    * **Key Idea**: The cited work\'s *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study\'s findings.\n\n6.  **other**:\n    * **Description**: The citation\'s rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don\'t fit any other specific rhetorical function (e.g., a passing mention without clear intent).\n    * **WoS Insight**: Citations that are not classifiable into other specific categories.\n    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.\n\n**Important Considerations for Classification**:\n* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.\n* **Context is Key**: While the \'section\' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the \'citation\' text itself. A citation\'s intent might occasionally differ from its section\'s typical use.\n* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.\n\n**Input Format**:\nEach citation will be provided as a JSON object with the following fields:\n* `id`: A unique identifier for the citation (String).\n* `citation`: The citation sentence or excerpt **in Turkish** (String).\n* `section`: The title of the section in which the citation appears, **in Turkish** (String).\n\nAll citations will be presented as a JSON array.\nExample of Input Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",\n    "section": "Giriş"\n  },\n  {\n    "id": "unique_id_2",\n    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",\n    "section": "Yöntem"\n  }\n]\n\n**Expected Output Format**:\nThe output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.\nExample of Output Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "intent": "background"\n  },\n  {\n    "id": "unique_id_2",\n    "intent": "basis"\n  }\n]\n\nPlease return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.'
+    citation = Field(annotation=str required=True json_schema_extra={'desc': 'Atıf cümlesi', '__dspy_field_type': 'input', 'prefix': 'Citation:'})
+    section = Field(annotation=str required=True json_schema_extra={'desc': 'Bölüm başlığı', '__dspy_field_type': 'input', 'prefix': 'Section:'})
+    reasoning = Field(annotation=str required=True json_schema_extra={'desc': 'Niyet sınıflandırmasının adım adım gerekçesi.', '__dspy_field_type': 'output', 'prefix': 'Reasoning:'})
+    intent = Field(annotation=str required=True json_schema_extra={'desc': "Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'", '__dspy_field_type': 'output', 'prefix': 'Intent:'})
+)
+
+class ClassifyCitation(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.citation_intent_signature = CitationIntentSignature
+        self.classifier = dspy.ChainOfThought(signature=CitationIntentSignature)
+    def forward(self, citation, section):
+        prediction = self.classifier(citation=citation, section=section)
+        return prediction
+
+
+[[ ## program_description ## ]]
+The program is designed to classify academic citations from Turkish research papers based on their rhetorical intent. It specifically targets citations in the fields of computer science and artificial intelligence. The classification task involves categorizing each citation into one of six predefined categories: background, basis, discuss, support, differ, or other. These categories are inspired by the Web of Science citation classification schema and have been refined for clarity.
+
+The program operates by analyzing the citation text and the section title in which the citation appears, both of which are provided in Turkish. The classification is based on the semantic content and rhetorical function of the citation, with the section title providing contextual clues. However, the primary basis for classification is the citation's semantic content.
+
+The process is a zero-shot classification task, meaning it does not rely on pre-defined examples for learning. Instead, it uses a pre-defined set of instructions and guidelines to classify the citations. The input is a JSON array of citation objects, each containing an id, citation text, and section title. The output is a JSON array of objects with each citation's id and its classified intent.
+
+The program uses a class `ClassifyCitation` that initializes a classifier with a signature `CitationIntentSignature`. The classifier processes the citation and section input to predict the rhetorical intent, returning a structured JSON output without additional commentary or explanation. This approach ensures a systematic and consistent classification of citations based on their rhetorical roles in academic papers.
+
+[[ ## module ## ]]
+Predict(citation, section) -> reasoning, intent
+
+[[ ## module_description ## ]]
+The `Predict(citation, section) -> reasoning, intent` module is responsible for processing each citation and its corresponding section title to determine the rhetorical intent of the citation. This module leverages the `ClassifyCitation` class, which utilizes a chain-of-thought approach to analyze the semantic content and context provided by the section title. The module outputs a reasoning field that provides a step-by-step justification for the classification decision, and an intent field that indicates the specific category into which the citation falls. This functionality is crucial for the program's objective of systematically and accurately classifying citations based on their rhetorical roles in academic papers.
+
+[[ ## task_demos ## ]]
+No task demos provided.
+
+[[ ## basic_instruction ## ]]
+You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+
+[[ ## tip ## ]]
+The instruction should include a high stakes scenario in which the LM must solve the task!
+
+Respond with the corresponding output fields, starting with the field `[[ ## proposed_instruction ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+Response:
+
+[[ ## proposed_instruction ## ]]
+Imagine you are an expert reviewer for a prestigious Turkish academic journal in the fields of computer science and artificial intelligence. Your reputation as a meticulous and insightful reviewer is on the line, and you have been tasked with evaluating the rhetorical intent of citations in submitted research papers. Each citation plays a critical role in the authors' arguments and methodologies, and your analysis will influence whether the paper is accepted for publication. You must classify each citation based on its intent, using your expertise to discern subtle differences in how citations are used within the context of the paper. The stakes are high, as your classification will directly impact the integrity and credibility of the journal. Analyze and classify each citation into one of six categories: background, basis, discuss, support, differ, or other. The citations and their corresponding section titles will be provided in Turkish. Remember, your analysis must be precise and accurate, as the future of the paper depends on your expert judgment. Return the results as a valid JSON array, without any additional commentary.
+
+[[ ## completed ## ]]
+
+
+
+
+
+PROPOSED INSTRUCTION: Imagine you are an expert reviewer for a prestigious Turkish academic journal in the fields of computer science and artificial intelligence. Your reputation as a meticulous and insightful reviewer is on the line, and you have been tasked with evaluating the rhetorical intent of citations in submitted research papers. Each citation plays a critical role in the authors' arguments and methodologies, and your analysis will influence whether the paper is accepted for publication. You must classify each citation based on its intent, using your expertise to discern subtle differences in how citations are used within the context of the paper. The stakes are high, as your classification will directly impact the integrity and credibility of the journal. Analyze and classify each citation into one of six categories: background, basis, discuss, support, differ, or other. The citations and their corresponding section titles will be provided in Turkish. Remember, your analysis must be precise and accurate, as the future of the paper depends on your expert judgment. Return the results as a valid JSON array, without any additional commentary.
+Using a randomly generated configuration for our grounded proposer.
+Selected tip: creative
+PROGRAM DESCRIPTION: This program is designed to classify academic citations from Turkish research papers into specific rhetorical intent categories. The task involves analyzing citations and their corresponding section titles, both provided in Turkish, to determine the role each citation plays in the context of the research paper. The program uses a classification schema inspired by the Web of Science citation classification, refined to include categories like "background," "basis," "discuss," "support," "differ," and "other."
+
+The process begins by taking input in the form of JSON objects, each containing a citation and its section title. The program then applies a language model, structured as a chain of thought, to classify each citation based on its content and the context provided by the section title. The classification involves reasoning through the citation's content to determine its rhetorical function, such as whether it provides foundational context ("background"), is central to the methodology ("basis"), or plays another role.
+
+The output is a JSON array of objects, each containing the citation's unique identifier and its classified intent, ensuring a clear understanding of how each citation contributes to the research paper. The program is particularly tailored for zero-shot classification, meaning it does not rely on pre-defined examples but rather on the semantic understanding of the citation and section content in Turkish.
+task_demos Citation: Ortalama mutlak hata ölçütü aşağıda belirtilen formüle göre hesaplanmaktadır [32] :
+Section: VERİ SETİ VE BULGULAR (DATA SET AND FINDINGS)
+Reasoning: The citation provides a formula for calculating the mean absolute error, which is a specific method or metric used in the study. The section "VERİ SETİ VE BULGULAR" suggests that this is part of the findings or results, but the citation itself is about a methodological aspect. The citation indicates that the study is using a specific formula from the cited work, which aligns with the "basis" category, as it directly reports using a method described in the cited work.
+Intent: basis
+
+Citation: Yapay zekâ temelli rehabilitasyonda teknoloji uygulamalarının avantajları; bireyin seviyesine ve yeteneklerine uygun dizayn edilebilir olması, terapist ve hasta için tedavinin süre, yoğunluk, zorluk, hız gibi parametrelerinin esnek olarak yapılandırılmasının sağlanması, güvenilir ve geçerli kullanıcı algılama donanımı ile objektif veri sağlaması, gerçek zamanlı geribildirim sağlanması, gerçek yaşam simülasyonu ile aktivite eğitim kolaylığı sunması ve rehabilitasyonun sürecinde hasta ve terapistin olası tükenmişliğini azaltmasıdır (Tarakçı, 2021) .
+Section: YAPAY ZEKÂ TEMELLİ AKILLI REHABİLİTASYON TEKNİKLERİ
+Reasoning: The citation discusses the advantages of technology applications in AI-based rehabilitation, such as customization to individual needs, flexible treatment parameters, reliable data collection, real-time feedback, and reducing burnout. These points are presented as general benefits of AI-based rehabilitation technology, without indicating that the current study directly builds upon or uses these specific technologies or methods. The section title "Yapay Zekâ Temelli Akıllı Rehabilitasyon Teknikleri" suggests a focus on techniques, but the citation itself provides a broad overview of advantages rather than specific methodological details or foundational work for the current study.
+Intent: background
+
+Citation: Bunların başında doğrusal olmayan ters çözüm yöntemleri ve metasezgisel yaklaşımlar gibi optimizasyon yöntemleri olmak üzere  , Fourier, Hilbert ve dalgacık analizleri  , tomografik yaklaşımlar  , yapay sinir ağları 28] , ve Euler dekonvolüsyonu   gibi analitik yöntemler sayılabilir.
+Section: Giriş
+Reasoning: The citation lists various analytical and optimization methods, such as nonlinear inverse solution methods, metaheuristic approaches, Fourier, Hilbert, and wavelet analyses, tomographic approaches, artificial neural networks, and Euler deconvolution. These methods are mentioned in the "Giriş" (Introduction) section, which typically provides background information. The citation does not indicate that these methods are directly used or adapted in the current study, nor does it engage in a detailed discussion or comparison of results. Therefore, the citation serves to provide a broader context and acknowledge foundational knowledge relevant to the field.
+Intent: background
+
+
+
+
+
+
+[2025-05-25T13:06:35.094638]
+
+System message:
+
+Your input fields are:
+1. `dataset_description` (str): A description of the dataset that we are using.
+2. `program_code` (str): Language model program designed to solve a particular task.
+3. `program_description` (str): Summary of the task the program is designed to solve, and how it goes about solving it.
+4. `module` (str): The module to create an instruction for.
+5. `module_description` (str): Description of the module to create an instruction for.
+6. `task_demos` (str): Example inputs/outputs of our module.
+7. `basic_instruction` (str): Basic instruction.
+8. `tip` (str): A suggestion for how to go about generating the new instruction.
+Your output fields are:
+1. `proposed_instruction` (str): Propose an instruction that will be used to prompt a Language Model to perform this task.
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## dataset_description ## ]]
+{dataset_description}
+
+[[ ## program_code ## ]]
+{program_code}
+
+[[ ## program_description ## ]]
+{program_description}
+
+[[ ## module ## ]]
+{module}
+
+[[ ## module_description ## ]]
+{module_description}
+
+[[ ## task_demos ## ]]
+{task_demos}
+
+[[ ## basic_instruction ## ]]
+{basic_instruction}
+
+[[ ## tip ## ]]
+{tip}
+
+[[ ## proposed_instruction ## ]]
+{proposed_instruction}
+
+[[ ## completed ## ]]
+In adhering to this structure, your objective is: 
+        Use the information below to learn about a task that we are trying to solve using calls to an LM, then generate a new instruction that will be used to prompt a Language Model to better solve the task.
+
+
+User message:
+
+[[ ## dataset_description ## ]]
+The dataset examines Turkish academic and technical writing, providing examples of citations and their intents within different sections of scientific papers such as "Introduction", "Methodology", and "Results". It aims to understand and categorize the role of citations in Turkish scholarly documents, particularly focusing on improving citation analysis and NLP tools for Turkish language processing. This dataset can enhance citation understanding, recommendation, and automatic summarization systems tailored for the Turkish academic context.
+
+[[ ## program_code ## ]]
+StringSignature(citation, section -> reasoning, intent
+    instructions='You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.\nYour goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:\n1.  **background**:\n    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper\'s core work.\n    * **WoS Insight**: previously published research that orients the current study within a scholarly area.\n    * **Typical Turkish Sections**: \'Giriş\' (Introduction), \'Literatür Taraması\' (Literature Review), \'İlgili Çalışmalar\' (Related Work), \'Genel Bilgiler\' (General Information).\n    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.\n\n2.  **basis**:\n    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.\n    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work\n    * **Typical Turkish Sections**: \'Yöntem\' (Methodology), \'Materyal ve Metot\' (Material and Method), \'Model Tasarımı\' (Model Design), \'Veri Seti\' (Dataset), \'Uygulama\' (Implementation).\n    * **Key Idea**: The current study\'s methodology or execution directly and essentially depends on the content of the cited work.\n\n3.  **discuss**:\n    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work\'s importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.\n    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.\n    * **Typical Turkish Sections**: \'Literatür Taraması\' (Literature Review), \'Tartışma\' (Discussion), \'Bulgular ve Tartışma\' (Results and Discussion), \'İlgili Çalışmalar\' (Related Work).\n    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.\n\n4.  **support**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion), \'Doğrulama\' (Validation).\n    * **Key Idea**: The cited work\'s outcomes lend credibility and support to the current study\'s findings by demonstrating consistency.\n\n5.  **differ**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion).\n    * **Key Idea**: The cited work\'s *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study\'s findings.\n\n6.  **other**:\n    * **Description**: The citation\'s rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don\'t fit any other specific rhetorical function (e.g., a passing mention without clear intent).\n    * **WoS Insight**: Citations that are not classifiable into other specific categories.\n    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.\n\n**Important Considerations for Classification**:\n* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.\n* **Context is Key**: While the \'section\' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the \'citation\' text itself. A citation\'s intent might occasionally differ from its section\'s typical use.\n* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.\n\n**Input Format**:\nEach citation will be provided as a JSON object with the following fields:\n* `id`: A unique identifier for the citation (String).\n* `citation`: The citation sentence or excerpt **in Turkish** (String).\n* `section`: The title of the section in which the citation appears, **in Turkish** (String).\n\nAll citations will be presented as a JSON array.\nExample of Input Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",\n    "section": "Giriş"\n  },\n  {\n    "id": "unique_id_2",\n    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",\n    "section": "Yöntem"\n  }\n]\n\n**Expected Output Format**:\nThe output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.\nExample of Output Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "intent": "background"\n  },\n  {\n    "id": "unique_id_2",\n    "intent": "basis"\n  }\n]\n\nPlease return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.'
+    citation = Field(annotation=str required=True json_schema_extra={'desc': 'Atıf cümlesi', '__dspy_field_type': 'input', 'prefix': 'Citation:'})
+    section = Field(annotation=str required=True json_schema_extra={'desc': 'Bölüm başlığı', '__dspy_field_type': 'input', 'prefix': 'Section:'})
+    reasoning = Field(annotation=str required=True json_schema_extra={'desc': 'Niyet sınıflandırmasının adım adım gerekçesi.', '__dspy_field_type': 'output', 'prefix': 'Reasoning:'})
+    intent = Field(annotation=str required=True json_schema_extra={'desc': "Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'", '__dspy_field_type': 'output', 'prefix': 'Intent:'})
+)
+
+class ClassifyCitation(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.citation_intent_signature = CitationIntentSignature
+        self.classifier = dspy.ChainOfThought(signature=CitationIntentSignature)
+    def forward(self, citation, section):
+        prediction = self.classifier(citation=citation, section=section)
+        return prediction
+
+
+[[ ## program_description ## ]]
+This program is designed to classify academic citations from Turkish research papers into specific rhetorical intent categories. The task involves analyzing citations and their corresponding section titles, both provided in Turkish, to determine the role each citation plays in the context of the research paper. The program uses a classification schema inspired by the Web of Science citation classification, refined to include categories like "background," "basis," "discuss," "support," "differ," and "other."
+
+The process begins by taking input in the form of JSON objects, each containing a citation and its section title. The program then applies a language model, structured as a chain of thought, to classify each citation based on its content and the context provided by the section title. The classification involves reasoning through the citation's content to determine its rhetorical function, such as whether it provides foundational context ("background"), is central to the methodology ("basis"), or plays another role.
+
+The output is a JSON array of objects, each containing the citation's unique identifier and its classified intent, ensuring a clear understanding of how each citation contributes to the research paper. The program is particularly tailored for zero-shot classification, meaning it does not rely on pre-defined examples but rather on the semantic understanding of the citation and section content in Turkish.
+
+[[ ## module ## ]]
+Predict(citation, section) -> reasoning, intent
+
+[[ ## module_description ## ]]
+The `Predict(citation, section) -> reasoning, intent` module is responsible for the core task of determining the rhetorical intent of a given citation within the context of its section in a Turkish research paper. This module takes as input a citation and its corresponding section title, and utilizes a language model structured as a chain of thought to process and analyze the semantic content. The module's output includes both a step-by-step reasoning of the classification process and the final intent category. This intent could be one of several predefined categories such as "background," "basis," "discuss," "support," "differ," or "other." The module ensures that each citation is accurately classified based on its role and function within the research paper, contributing to a deeper understanding of the citation's purpose in the scholarly work.
+
+[[ ## task_demos ## ]]
+Citation: Ortalama mutlak hata ölçütü aşağıda belirtilen formüle göre hesaplanmaktadır [32] :
+Section: VERİ SETİ VE BULGULAR (DATA SET AND FINDINGS)
+Reasoning: The citation provides a formula for calculating the mean absolute error, which is a specific method or metric used in the study. The section "VERİ SETİ VE BULGULAR" suggests that this is part of the findings or results, but the citation itself is about a methodological aspect. The citation indicates that the study is using a specific formula from the cited work, which aligns with the "basis" category, as it directly reports using a method described in the cited work.
+Intent: basis
+
+Citation: Yapay zekâ temelli rehabilitasyonda teknoloji uygulamalarının avantajları; bireyin seviyesine ve yeteneklerine uygun dizayn edilebilir olması, terapist ve hasta için tedavinin süre, yoğunluk, zorluk, hız gibi parametrelerinin esnek olarak yapılandırılmasının sağlanması, güvenilir ve geçerli kullanıcı algılama donanımı ile objektif veri sağlaması, gerçek zamanlı geribildirim sağlanması, gerçek yaşam simülasyonu ile aktivite eğitim kolaylığı sunması ve rehabilitasyonun sürecinde hasta ve terapistin olası tükenmişliğini azaltmasıdır (Tarakçı, 2021) .
+Section: YAPAY ZEKÂ TEMELLİ AKILLI REHABİLİTASYON TEKNİKLERİ
+Reasoning: The citation discusses the advantages of technology applications in AI-based rehabilitation, such as customization to individual needs, flexible treatment parameters, reliable data collection, real-time feedback, and reducing burnout. These points are presented as general benefits of AI-based rehabilitation technology, without indicating that the current study directly builds upon or uses these specific technologies or methods. The section title "Yapay Zekâ Temelli Akıllı Rehabilitasyon Teknikleri" suggests a focus on techniques, but the citation itself provides a broad overview of advantages rather than specific methodological details or foundational work for the current study.
+Intent: background
+
+Citation: Bunların başında doğrusal olmayan ters çözüm yöntemleri ve metasezgisel yaklaşımlar gibi optimizasyon yöntemleri olmak üzere  , Fourier, Hilbert ve dalgacık analizleri  , tomografik yaklaşımlar  , yapay sinir ağları 28] , ve Euler dekonvolüsyonu   gibi analitik yöntemler sayılabilir.
+Section: Giriş
+Reasoning: The citation lists various analytical and optimization methods, such as nonlinear inverse solution methods, metaheuristic approaches, Fourier, Hilbert, and wavelet analyses, tomographic approaches, artificial neural networks, and Euler deconvolution. These methods are mentioned in the "Giriş" (Introduction) section, which typically provides background information. The citation does not indicate that these methods are directly used or adapted in the current study, nor does it engage in a detailed discussion or comparison of results. Therefore, the citation serves to provide a broader context and acknowledge foundational knowledge relevant to the field.
+Intent: background
+
+
+
+[[ ## basic_instruction ## ]]
+You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+
+[[ ## tip ## ]]
+Don't be afraid to be creative when creating the new instruction!
+
+Respond with the corresponding output fields, starting with the field `[[ ## proposed_instruction ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+Response:
+
+[[ ## proposed_instruction ## ]]
+You are tasked with a specialized role as an academic editor focusing on Turkish scholarly articles in the fields of computer science and artificial intelligence. Your objective is to thoroughly examine and categorize academic citations within these Turkish research papers based on their rhetorical intent. Each citation, along with its section title, will be provided in Turkish.
+
+Your mission is to classify each citation into one of the following six categories, which have been adapted from the Web of Science citation classification schema and refined for clarity:
+
+1. **background**: Citations that provide general context, historical information, or acknowledge foundational studies not directly built upon by the current research. These citations are typically found in sections like 'Giriş' (Introduction) or 'Literatür Taraması' (Literature Review).
+
+2. **basis**: Citations that serve as a fundamental pillar for the current study, where specific methods, algorithms, datasets, or equipment from the cited work are directly used or adapted. These are often located in sections such as 'Yöntem' (Methodology) or 'Veri Seti' (Dataset).
+
+3. **discuss**: Citations actively analyzed or critically evaluated within the study, often involving a detailed examination of arguments, findings, or theories. These are common in 'Tartışma' (Discussion) or 'Literatür Taraması' (Literature Review).
+
+4. **support**: Citations that reinforce or validate the current study's findings by demonstrating consistency with the cited work's results. Look for these in 'Bulgular' (Results) or 'Sonuçlar' (Conclusions).
+
+5. **differ**: Citations that highlight contrasting or differing results compared to the current study, offering alternative views. These typically appear in 'Bulgular' (Results) or 'Tartışma' (Discussion).
+
+6. **other**: Citations that cannot be confidently classified into the above categories due to insufficient information or lack of clear rhetorical intent.
+
+**Key Considerations**:
+- The text and section titles will be in Turkish, and your classification should be based on understanding this content.
+- The section title provides context but focus primarily on the citation's semantic content and rhetorical function.
+- This is a zero-shot classification task; rely on semantic understanding rather than pre-defined examples.
+
+**Input Format**:
+Citations are provided as JSON objects with fields for `id`, `citation`, and `section`, all in Turkish.
+
+**Output Format**:
+Return a JSON array of objects, each with the citation's `id` and its classified `intent`. Ensure the response is a valid JSON array without additional commentary.
+
+Example Input:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+Example Output:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please ensure your output is strictly formatted as a valid JSON array.
+
+[[ ## completed ## ]]
+
+
+
+
+
+PROPOSED INSTRUCTION: You are tasked with a specialized role as an academic editor focusing on Turkish scholarly articles in the fields of computer science and artificial intelligence. Your objective is to thoroughly examine and categorize academic citations within these Turkish research papers based on their rhetorical intent. Each citation, along with its section title, will be provided in Turkish.
+
+Your mission is to classify each citation into one of the following six categories, which have been adapted from the Web of Science citation classification schema and refined for clarity:
+
+1. **background**: Citations that provide general context, historical information, or acknowledge foundational studies not directly built upon by the current research. These citations are typically found in sections like 'Giriş' (Introduction) or 'Literatür Taraması' (Literature Review).
+
+2. **basis**: Citations that serve as a fundamental pillar for the current study, where specific methods, algorithms, datasets, or equipment from the cited work are directly used or adapted. These are often located in sections such as 'Yöntem' (Methodology) or 'Veri Seti' (Dataset).
+
+3. **discuss**: Citations actively analyzed or critically evaluated within the study, often involving a detailed examination of arguments, findings, or theories. These are common in 'Tartışma' (Discussion) or 'Literatür Taraması' (Literature Review).
+
+4. **support**: Citations that reinforce or validate the current study's findings by demonstrating consistency with the cited work's results. Look for these in 'Bulgular' (Results) or 'Sonuçlar' (Conclusions).
+
+5. **differ**: Citations that highlight contrasting or differing results compared to the current study, offering alternative views. These typically appear in 'Bulgular' (Results) or 'Tartışma' (Discussion).
+
+6. **other**: Citations that cannot be confidently classified into the above categories due to insufficient information or lack of clear rhetorical intent.
+
+**Key Considerations**:
+- The text and section titles will be in Turkish, and your classification should be based on understanding this content.
+- The section title provides context but focus primarily on the citation's semantic content and rhetorical function.
+- This is a zero-shot classification task; rely on semantic understanding rather than pre-defined examples.
+
+**Input Format**:
+Citations are provided as JSON objects with fields for `id`, `citation`, and `section`, all in Turkish.
+
+**Output Format**:
+Return a JSON array of objects, each with the citation's `id` and its classified `intent`. Ensure the response is a valid JSON array without additional commentary.
+
+Example Input:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+Example Output:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please ensure your output is strictly formatted as a valid JSON array.
+Using a randomly generated configuration for our grounded proposer.
+Selected tip: none
+PROGRAM DESCRIPTION: This program is designed to classify academic citations from Turkish research papers based on their rhetorical intent. It is particularly focused on citations within the fields of computer science and artificial intelligence. The program uses a language model to analyze the citation text and the section title in which the citation appears to determine the citation's intent. It classifies each citation into one of six categories: "background," "basis," "discuss," "support," "differ," or "other." These categories are based on a refined version of the Web of Science citation classification schema. The classification process is zero-shot, meaning it does not rely on pre-defined examples for learning but instead uses the semantic content of the citation and its context within the paper. The output is a JSON array with each citation's ID and its classified intent.
+task_demos Citation: Yapay zekâ temelli rehabilitasyonda teknoloji uygulamalarının avantajları; bireyin seviyesine ve yeteneklerine uygun dizayn edilebilir olması, terapist ve hasta için tedavinin süre, yoğunluk, zorluk, hız gibi parametrelerinin esnek olarak yapılandırılmasının sağlanması, güvenilir ve geçerli kullanıcı algılama donanımı ile objektif veri sağlaması, gerçek zamanlı geribildirim sağlanması, gerçek yaşam simülasyonu ile aktivite eğitim kolaylığı sunması ve rehabilitasyonun sürecinde hasta ve terapistin olası tükenmişliğini azaltmasıdır (Tarakçı, 2021) .
+Section: YAPAY ZEKÂ TEMELLİ AKILLI REHABİLİTASYON TEKNİKLERİ
+Reasoning: The citation discusses the advantages of technology applications in AI-based rehabilitation, such as customization to individual needs, flexible treatment parameters, reliable data collection, real-time feedback, and reducing burnout. These points are presented as general benefits of AI-based rehabilitation technology, without indicating that the current study directly builds upon or uses these specific technologies or methods. The section title "Yapay Zekâ Temelli Akıllı Rehabilitasyon Teknikleri" suggests a focus on techniques, but the citation itself provides a broad overview of advantages rather than specific methodological details or foundational work for the current study.
+Intent: background
+
+Citation: Bunların başında doğrusal olmayan ters çözüm yöntemleri ve metasezgisel yaklaşımlar gibi optimizasyon yöntemleri olmak üzere  , Fourier, Hilbert ve dalgacık analizleri  , tomografik yaklaşımlar  , yapay sinir ağları 28] , ve Euler dekonvolüsyonu   gibi analitik yöntemler sayılabilir.
+Section: Giriş
+Reasoning: The citation lists various analytical and optimization methods, such as nonlinear inverse solution methods, metaheuristic approaches, Fourier, Hilbert, and wavelet analyses, tomographic approaches, artificial neural networks, and Euler deconvolution. These methods are mentioned in the "Giriş" (Introduction) section, which typically provides background information. The citation does not indicate that these methods are directly used or adapted in the current study, nor does it engage in a detailed discussion or comparison of results. Therefore, the citation serves to provide a broader context and acknowledge foundational knowledge relevant to the field.
+Intent: background
+
+Citation: ancak Zerocoin gibi sıfır bilgi protokolü içermediğinden mixin (halkadaki imza) sayısına bağlı olarak takip edilme olasılığı daha yüksektir Wijaya et al., 2018) .
+Section: Karşılaştırma
+Reasoning: The citation discusses a comparison between a protocol that does not include a zero-knowledge protocol like Zerocoin and its implications on traceability based on the number of mixins. The section title "Karşılaştırma" (Comparison) suggests that the citation is used to highlight differences or contrasts. The citation specifically points out a higher likelihood of traceability, which implies a difference in outcomes or characteristics compared to Zerocoin. This aligns with the intent of highlighting differences.
+Intent: differ
+
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: Proposed Instructions for Predictor 0:
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: 0: You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: 1: You are tasked with a specialized role as an academic editor focusing on Turkish scholarly articles in the fields of computer science and artificial intelligence. Your objective is to thoroughly examine and categorize academic citations within these Turkish research papers based on their rhetorical intent. Each citation, along with its section title, will be provided in Turkish.
+
+Your mission is to classify each citation into one of the following six categories, which have been adapted from the Web of Science citation classification schema and refined for clarity:
+
+1. **background**: Citations that provide general context, historical information, or acknowledge foundational studies not directly built upon by the current research. These citations are typically found in sections like 'Giriş' (Introduction) or 'Literatür Taraması' (Literature Review).
+
+2. **basis**: Citations that serve as a fundamental pillar for the current study, where specific methods, algorithms, datasets, or equipment from the cited work are directly used or adapted. These are often located in sections such as 'Yöntem' (Methodology) or 'Veri Seti' (Dataset).
+
+3. **discuss**: Citations actively analyzed or critically evaluated within the study, often involving a detailed examination of arguments, findings, or theories. These are common in 'Tartışma' (Discussion) or 'Literatür Taraması' (Literature Review).
+
+4. **support**: Citations that reinforce or validate the current study's findings by demonstrating consistency with the cited work's results. Look for these in 'Bulgular' (Results) or 'Sonuçlar' (Conclusions).
+
+5. **differ**: Citations that highlight contrasting or differing results compared to the current study, offering alternative views. These typically appear in 'Bulgular' (Results) or 'Tartışma' (Discussion).
+
+6. **other**: Citations that cannot be confidently classified into the above categories due to insufficient information or lack of clear rhetorical intent.
+
+**Key Considerations**:
+- The text and section titles will be in Turkish, and your classification should be based on understanding this content.
+- The section title provides context but focus primarily on the citation's semantic content and rhetorical function.
+- This is a zero-shot classification task; rely on semantic understanding rather than pre-defined examples.
+
+**Input Format**:
+Citations are provided as JSON objects with fields for `id`, `citation`, and `section`, all in Turkish.
+
+**Output Format**:
+Return a JSON array of objects, each with the citation's `id` and its classified `intent`. Ensure the response is a valid JSON array without additional commentary.
+
+Example Input:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+Example Output:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please ensure your output is strictly formatted as a valid JSON array.
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: 2: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: 
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: ==> STEP 3: FINDING OPTIMAL PROMPT PARAMETERS <==
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: We will evaluate the program over a series of trials with different combinations of instructions and few-shot examples to find the optimal combination using Bayesian Optimization.
+
+2025/05/25 13:06:43 INFO dspy.teleprompt.mipro_optimizer_v2: == Trial 1 / 10 - Full Evaluation of Default Program ==
+
+
+
+
+[2025-05-25T13:06:43.065358]
+
+System message:
+
+Your input fields are:
+1. `dataset_description` (str): A description of the dataset that we are using.
+2. `program_code` (str): Language model program designed to solve a particular task.
+3. `program_description` (str): Summary of the task the program is designed to solve, and how it goes about solving it.
+4. `module` (str): The module to create an instruction for.
+5. `module_description` (str): Description of the module to create an instruction for.
+6. `task_demos` (str): Example inputs/outputs of our module.
+7. `basic_instruction` (str): Basic instruction.
+Your output fields are:
+1. `proposed_instruction` (str): Propose an instruction that will be used to prompt a Language Model to perform this task.
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## dataset_description ## ]]
+{dataset_description}
+
+[[ ## program_code ## ]]
+{program_code}
+
+[[ ## program_description ## ]]
+{program_description}
+
+[[ ## module ## ]]
+{module}
+
+[[ ## module_description ## ]]
+{module_description}
+
+[[ ## task_demos ## ]]
+{task_demos}
+
+[[ ## basic_instruction ## ]]
+{basic_instruction}
+
+[[ ## proposed_instruction ## ]]
+{proposed_instruction}
+
+[[ ## completed ## ]]
+In adhering to this structure, your objective is: 
+        Use the information below to learn about a task that we are trying to solve using calls to an LM, then generate a new instruction that will be used to prompt a Language Model to better solve the task.
+
+
+User message:
+
+[[ ## dataset_description ## ]]
+The dataset examines Turkish academic and technical writing, providing examples of citations and their intents within different sections of scientific papers such as "Introduction", "Methodology", and "Results". It aims to understand and categorize the role of citations in Turkish scholarly documents, particularly focusing on improving citation analysis and NLP tools for Turkish language processing. This dataset can enhance citation understanding, recommendation, and automatic summarization systems tailored for the Turkish academic context.
+
+[[ ## program_code ## ]]
+StringSignature(citation, section -> reasoning, intent
+    instructions='You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.\nYour goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:\n1.  **background**:\n    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper\'s core work.\n    * **WoS Insight**: previously published research that orients the current study within a scholarly area.\n    * **Typical Turkish Sections**: \'Giriş\' (Introduction), \'Literatür Taraması\' (Literature Review), \'İlgili Çalışmalar\' (Related Work), \'Genel Bilgiler\' (General Information).\n    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.\n\n2.  **basis**:\n    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.\n    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work\n    * **Typical Turkish Sections**: \'Yöntem\' (Methodology), \'Materyal ve Metot\' (Material and Method), \'Model Tasarımı\' (Model Design), \'Veri Seti\' (Dataset), \'Uygulama\' (Implementation).\n    * **Key Idea**: The current study\'s methodology or execution directly and essentially depends on the content of the cited work.\n\n3.  **discuss**:\n    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work\'s importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.\n    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.\n    * **Typical Turkish Sections**: \'Literatür Taraması\' (Literature Review), \'Tartışma\' (Discussion), \'Bulgular ve Tartışma\' (Results and Discussion), \'İlgili Çalışmalar\' (Related Work).\n    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.\n\n4.  **support**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion), \'Doğrulama\' (Validation).\n    * **Key Idea**: The cited work\'s outcomes lend credibility and support to the current study\'s findings by demonstrating consistency.\n\n5.  **differ**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion).\n    * **Key Idea**: The cited work\'s *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study\'s findings.\n\n6.  **other**:\n    * **Description**: The citation\'s rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don\'t fit any other specific rhetorical function (e.g., a passing mention without clear intent).\n    * **WoS Insight**: Citations that are not classifiable into other specific categories.\n    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.\n\n**Important Considerations for Classification**:\n* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.\n* **Context is Key**: While the \'section\' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the \'citation\' text itself. A citation\'s intent might occasionally differ from its section\'s typical use.\n* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.\n\n**Input Format**:\nEach citation will be provided as a JSON object with the following fields:\n* `id`: A unique identifier for the citation (String).\n* `citation`: The citation sentence or excerpt **in Turkish** (String).\n* `section`: The title of the section in which the citation appears, **in Turkish** (String).\n\nAll citations will be presented as a JSON array.\nExample of Input Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",\n    "section": "Giriş"\n  },\n  {\n    "id": "unique_id_2",\n    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",\n    "section": "Yöntem"\n  }\n]\n\n**Expected Output Format**:\nThe output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.\nExample of Output Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "intent": "background"\n  },\n  {\n    "id": "unique_id_2",\n    "intent": "basis"\n  }\n]\n\nPlease return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.'
+    citation = Field(annotation=str required=True json_schema_extra={'desc': 'Atıf cümlesi', '__dspy_field_type': 'input', 'prefix': 'Citation:'})
+    section = Field(annotation=str required=True json_schema_extra={'desc': 'Bölüm başlığı', '__dspy_field_type': 'input', 'prefix': 'Section:'})
+    reasoning = Field(annotation=str required=True json_schema_extra={'desc': 'Niyet sınıflandırmasının adım adım gerekçesi.', '__dspy_field_type': 'output', 'prefix': 'Reasoning:'})
+    intent = Field(annotation=str required=True json_schema_extra={'desc': "Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'", '__dspy_field_type': 'output', 'prefix': 'Intent:'})
+)
+
+class ClassifyCitation(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.citation_intent_signature = CitationIntentSignature
+        self.classifier = dspy.ChainOfThought(signature=CitationIntentSignature)
+    def forward(self, citation, section):
+        prediction = self.classifier(citation=citation, section=section)
+        return prediction
+
+
+[[ ## program_description ## ]]
+This program is designed to classify academic citations from Turkish research papers based on their rhetorical intent. It is particularly focused on citations within the fields of computer science and artificial intelligence. The program uses a language model to analyze the citation text and the section title in which the citation appears to determine the citation's intent. It classifies each citation into one of six categories: "background," "basis," "discuss," "support," "differ," or "other." These categories are based on a refined version of the Web of Science citation classification schema. The classification process is zero-shot, meaning it does not rely on pre-defined examples for learning but instead uses the semantic content of the citation and its context within the paper. The output is a JSON array with each citation's ID and its classified intent.
+
+[[ ## module ## ]]
+Predict(citation, section) -> reasoning, intent
+
+[[ ## module_description ## ]]
+The `Predict(citation, section) -> reasoning, intent` module is responsible for taking a citation and its corresponding section title as inputs and producing a classification of the citation's rhetorical intent along with a reasoning for this classification. This module utilizes a language model to analyze the semantic content of the citation and the context provided by the section title. It applies a zero-shot classification approach to assign one of the predefined intent categories ("background," "basis," "discuss," "support," "differ," or "other") to each citation. The reasoning output provides a step-by-step justification for the classification decision, ensuring that users understand the basis of the intent categorization.
+
+[[ ## task_demos ## ]]
+Citation: Yapay zekâ temelli rehabilitasyonda teknoloji uygulamalarının avantajları; bireyin seviyesine ve yeteneklerine uygun dizayn edilebilir olması, terapist ve hasta için tedavinin süre, yoğunluk, zorluk, hız gibi parametrelerinin esnek olarak yapılandırılmasının sağlanması, güvenilir ve geçerli kullanıcı algılama donanımı ile objektif veri sağlaması, gerçek zamanlı geribildirim sağlanması, gerçek yaşam simülasyonu ile aktivite eğitim kolaylığı sunması ve rehabilitasyonun sürecinde hasta ve terapistin olası tükenmişliğini azaltmasıdır (Tarakçı, 2021) .
+Section: YAPAY ZEKÂ TEMELLİ AKILLI REHABİLİTASYON TEKNİKLERİ
+Reasoning: The citation discusses the advantages of technology applications in AI-based rehabilitation, such as customization to individual needs, flexible treatment parameters, reliable data collection, real-time feedback, and reducing burnout. These points are presented as general benefits of AI-based rehabilitation technology, without indicating that the current study directly builds upon or uses these specific technologies or methods. The section title "Yapay Zekâ Temelli Akıllı Rehabilitasyon Teknikleri" suggests a focus on techniques, but the citation itself provides a broad overview of advantages rather than specific methodological details or foundational work for the current study.
+Intent: background
+
+Citation: Bunların başında doğrusal olmayan ters çözüm yöntemleri ve metasezgisel yaklaşımlar gibi optimizasyon yöntemleri olmak üzere  , Fourier, Hilbert ve dalgacık analizleri  , tomografik yaklaşımlar  , yapay sinir ağları 28] , ve Euler dekonvolüsyonu   gibi analitik yöntemler sayılabilir.
+Section: Giriş
+Reasoning: The citation lists various analytical and optimization methods, such as nonlinear inverse solution methods, metaheuristic approaches, Fourier, Hilbert, and wavelet analyses, tomographic approaches, artificial neural networks, and Euler deconvolution. These methods are mentioned in the "Giriş" (Introduction) section, which typically provides background information. The citation does not indicate that these methods are directly used or adapted in the current study, nor does it engage in a detailed discussion or comparison of results. Therefore, the citation serves to provide a broader context and acknowledge foundational knowledge relevant to the field.
+Intent: background
+
+Citation: ancak Zerocoin gibi sıfır bilgi protokolü içermediğinden mixin (halkadaki imza) sayısına bağlı olarak takip edilme olasılığı daha yüksektir Wijaya et al., 2018) .
+Section: Karşılaştırma
+Reasoning: The citation discusses a comparison between a protocol that does not include a zero-knowledge protocol like Zerocoin and its implications on traceability based on the number of mixins. The section title "Karşılaştırma" (Comparison) suggests that the citation is used to highlight differences or contrasts. The citation specifically points out a higher likelihood of traceability, which implies a difference in outcomes or characteristics compared to Zerocoin. This aligns with the intent of highlighting differences.
+Intent: differ
+
+
+
+[[ ## basic_instruction ## ]]
+You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+
+Respond with the corresponding output fields, starting with the field `[[ ## proposed_instruction ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+Response:
+
+[[ ## proposed_instruction ## ]]
+Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+
+[[ ## completed ## ]]
+
+
+
+
+
+PROPOSED INSTRUCTION: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+Average Metric: 6.00 / 11 (54.5%): 100%|██████████| 11/11 [00:02<00:00,  3.76it/s]
+2025/05/25 13:06:46 INFO dspy.evaluate.evaluate: Average Metric: 6 / 11 (54.5%)
+2025/05/25 13:06:46 INFO dspy.teleprompt.mipro_optimizer_v2: Default program score: 54.55
+
+/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/optuna/_experimental.py:31: ExperimentalWarning: Argument ``multivariate`` is an experimental feature. The interface can change in the future.
+  warnings.warn(
+2025/05/25 13:06:46 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 2 / 10 =====
+2025/05/25 13:06:46 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Predictor 0
+i: You are tasked with a specialized role as an academic editor focusing on Turkish scholarly articles in the fields of computer science and artificial intelligence. Your objective is to thoroughly examine and categorize academic citations within these Turkish research papers based on their rhetorical intent. Each citation, along with its section title, will be provided in Turkish.
+
+Your mission is to classify each citation into one of the following six categories, which have been adapted from the Web of Science citation classification schema and refined for clarity:
+
+1. **background**: Citations that provide general context, historical information, or acknowledge foundational studies not directly built upon by the current research. These citations are typically found in sections like 'Giriş' (Introduction) or 'Literatür Taraması' (Literature Review).
+
+2. **basis**: Citations that serve as a fundamental pillar for the current study, where specific methods, algorithms, datasets, or equipment from the cited work are directly used or adapted. These are often located in sections such as 'Yöntem' (Methodology) or 'Veri Seti' (Dataset).
+
+3. **discuss**: Citations actively analyzed or critically evaluated within the study, often involving a detailed examination of arguments, findings, or theories. These are common in 'Tartışma' (Discussion) or 'Literatür Taraması' (Literature Review).
+
+4. **support**: Citations that reinforce or validate the current study's findings by demonstrating consistency with the cited work's results. Look for these in 'Bulgular' (Results) or 'Sonuçlar' (Conclusions).
+
+5. **differ**: Citations that highlight contrasting or differing results compared to the current study, offering alternative views. These typically appear in 'Bulgular' (Results) or 'Tartışma' (Discussion).
+
+6. **other**: Citations that cannot be confidently classified into the above categories due to insufficient information or lack of clear rhetorical intent.
+
+**Key Considerations**:
+- The text and section titles will be in Turkish, and your classification should be based on understanding this content.
+- The section title provides context but focus primarily on the citation's semantic content and rhetorical function.
+- This is a zero-shot classification task; rely on semantic understanding rather than pre-defined examples.
+
+**Input Format**:
+Citations are provided as JSON objects with fields for `id`, `citation`, and `section`, all in Turkish.
+
+**Output Format**:
+Return a JSON array of objects, each with the citation's `id` and its classified `intent`. Ensure the response is a valid JSON array without additional commentary.
+
+Example Input:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+Example Output:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please ensure your output is strictly formatted as a valid JSON array.
+p: Intent:
+
+
+Average Metric: 6.00 / 11 (54.5%): 100%|██████████| 11/11 [00:11<00:00,  1.03s/it]
+Predictor 0
+i: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+p: Intent:
+
+
+2025/05/25 13:06:57 INFO dspy.evaluate.evaluate: Average Metric: 6 / 11 (54.5%)
+2025/05/25 13:06:57 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 54.55 with parameters ['Predictor 0: Instruction 1', 'Predictor 0: Few-Shot Set 3'].
+2025/05/25 13:06:57 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55]
+2025/05/25 13:06:57 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 54.55
+2025/05/25 13:06:57 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:06:57 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 3 / 10 =====
+2025/05/25 13:06:57 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Average Metric: 3.00 / 8 (37.5%):  73%|███████▎  | 8/11 [00:05<00:01,  1.68it/s]2025/05/25 13:07:05 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:07:05 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:07:07 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 5.00 / 11 (45.5%): 100%|██████████| 11/11 [00:15<00:00,  1.45s/it]
+Predictor 0
+i: You are tasked with a specialized role as an academic editor focusing on Turkish scholarly articles in the fields of computer science and artificial intelligence. Your objective is to thoroughly examine and categorize academic citations within these Turkish research papers based on their rhetorical intent. Each citation, along with its section title, will be provided in Turkish.
+
+Your mission is to classify each citation into one of the following six categories, which have been adapted from the Web of Science citation classification schema and refined for clarity:
+
+1. **background**: Citations that provide general context, historical information, or acknowledge foundational studies not directly built upon by the current research. These citations are typically found in sections like 'Giriş' (Introduction) or 'Literatür Taraması' (Literature Review).
+
+2. **basis**: Citations that serve as a fundamental pillar for the current study, where specific methods, algorithms, datasets, or equipment from the cited work are directly used or adapted. These are often located in sections such as 'Yöntem' (Methodology) or 'Veri Seti' (Dataset).
+
+3. **discuss**: Citations actively analyzed or critically evaluated within the study, often involving a detailed examination of arguments, findings, or theories. These are common in 'Tartışma' (Discussion) or 'Literatür Taraması' (Literature Review).
+
+4. **support**: Citations that reinforce or validate the current study's findings by demonstrating consistency with the cited work's results. Look for these in 'Bulgular' (Results) or 'Sonuçlar' (Conclusions).
+
+5. **differ**: Citations that highlight contrasting or differing results compared to the current study, offering alternative views. These typically appear in 'Bulgular' (Results) or 'Tartışma' (Discussion).
+
+6. **other**: Citations that cannot be confidently classified into the above categories due to insufficient information or lack of clear rhetorical intent.
+
+**Key Considerations**:
+- The text and section titles will be in Turkish, and your classification should be based on understanding this content.
+- The section title provides context but focus primarily on the citation's semantic content and rhetorical function.
+- This is a zero-shot classification task; rely on semantic understanding rather than pre-defined examples.
+
+**Input Format**:
+Citations are provided as JSON objects with fields for `id`, `citation`, and `section`, all in Turkish.
+
+**Output Format**:
+Return a JSON array of objects, each with the citation's `id` and its classified `intent`. Ensure the response is a valid JSON array without additional commentary.
+
+Example Input:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+Example Output:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please ensure your output is strictly formatted as a valid JSON array.
+p: Intent:
+
+
+2025/05/25 13:07:13 INFO dspy.evaluate.evaluate: Average Metric: 5 / 11 (45.5%)
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 45.45 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 0'].
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45]
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 54.55
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 4 / 10 =====
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Average Metric: 6.00 / 11 (54.5%): 100%|██████████| 11/11 [00:00<00:00, 3274.94it/s]
+Predictor 0
+i: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+p: Intent:
+
+
+2025/05/25 13:07:13 INFO dspy.evaluate.evaluate: Average Metric: 6 / 11 (54.5%)
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 54.55 with parameters ['Predictor 0: Instruction 1', 'Predictor 0: Few-Shot Set 5'].
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55]
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 54.55
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 5 / 10 =====
+2025/05/25 13:07:13 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Average Metric: 4.00 / 6 (66.7%):  55%|█████▍    | 6/11 [00:08<00:08,  1.70s/it]2025/05/25 13:07:22 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 5.00 / 7 (71.4%):  64%|██████▎   | 7/11 [00:10<00:06,  1.62s/it]2025/05/25 13:07:23 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:07:25 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 6.00 / 11 (54.5%): 100%|██████████| 11/11 [00:21<00:00,  1.95s/it]
+2025/05/25 13:07:34 INFO dspy.evaluate.evaluate: Average Metric: 6 / 11 (54.5%)
+2025/05/25 13:07:34 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 54.55 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 2'].
+2025/05/25 13:07:34 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55]
+2025/05/25 13:07:34 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 54.55
+2025/05/25 13:07:34 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:07:34 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 6 / 10 =====
+2025/05/25 13:07:34 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Predictor 0
+i: You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+p: Intent:
+
+
+Average Metric: 3.00 / 3 (100.0%):  27%|██▋       | 3/11 [00:13<00:32,  4.07s/it]2025/05/25 13:07:50 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:07:51 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:07:51 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:07:51 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 5.00 / 5 (100.0%):  45%|████▌     | 5/11 [00:22<00:25,  4.19s/it]2025/05/25 13:08:00 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:08:00 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 6.00 / 6 (100.0%):  64%|██████▎   | 7/11 [00:31<00:18,  4.53s/it]2025/05/25 13:08:06 ERROR dspy.utils.parallelizer: Error for Example({'citation': 'Ayrıca, ADS-B verisinden gelen anormal verilerin sınıflandırılması için yapılan çalışmalarda SVM [8] , K-En Yakın Komşu Algoritması ve Naive Bayes sınıflandırıcı yapay öğrenme teknikleri   kullanılarak karşılaştırılmalar yapılmıştır.', 'section': 'Kaynak Taraması', 'citation_intent': 'discuss'}) (input_keys={'section', 'citation'}): Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - Rate limit reached for gpt-4o in organization org-PZvJ2v7PySmwI18WRU4JH1cB on tokens per min (TPM): Limit 30000, Used 28884, Requested 2636. Please try again in 3.04s. Visit https://platform.openai.com/account/rate-limits to learn more.. Set `provide_traceback=True` for traceback.
+Average Metric: 6.00 / 7 (85.7%):  82%|████████▏ | 9/11 [00:34<00:05,  2.80s/it]2025/05/25 13:08:09 ERROR dspy.utils.parallelizer: Error for Example({'citation': 'Farklı dillerle birlikte Türkçe veri setinin de birlikte konu edinildiği bir çalışmada Pontiki vd. [33] , SemEval-2016 yarışmasının 5 numaralı görevini yerine getirmek için çok katılımlı bir hedef tabanlı duygu analizi çalışması yürütmüşlerdir.', 'section': 'LİTERATÜR TARAMASI (LITERATURE REVIEW)', 'citation_intent': 'discuss'}) (input_keys={'section', 'citation'}): Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - Rate limit reached for gpt-4o in organization org-PZvJ2v7PySmwI18WRU4JH1cB on tokens per min (TPM): Limit 30000, Used 30000, Requested 2644. Please try again in 5.288s. Visit https://platform.openai.com/account/rate-limits to learn more.. Set `provide_traceback=True` for traceback.
+Average Metric: 8.00 / 9 (88.9%): 100%|██████████| 11/11 [00:43<00:00,  4.00s/it]
+2025/05/25 13:08:18 INFO dspy.evaluate.evaluate: Average Metric: 8.0 / 11 (72.7%)
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: Best full score so far! Score: 72.73
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 72.73 with parameters ['Predictor 0: Instruction 0', 'Predictor 0: Few-Shot Set 5'].
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55, 72.73]
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 72.73
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 7 / 10 =====
+2025/05/25 13:08:18 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Predictor 0
+i: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+p: Intent:
+
+
+Average Metric: 5.00 / 11 (45.5%): 100%|██████████| 11/11 [00:03<00:00,  3.52it/s]
+Predictor 0
+i: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+p: Intent:
+
+
+2025/05/25 13:08:21 INFO dspy.evaluate.evaluate: Average Metric: 5 / 11 (45.5%)
+2025/05/25 13:08:21 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 45.45 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 0'].
+2025/05/25 13:08:21 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55, 72.73, 45.45]
+2025/05/25 13:08:21 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 72.73
+2025/05/25 13:08:21 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:08:21 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 8 / 10 =====
+2025/05/25 13:08:21 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Average Metric: 7.00 / 11 (63.6%): 100%|██████████| 11/11 [00:11<00:00,  1.05s/it]
+2025/05/25 13:08:33 INFO dspy.evaluate.evaluate: Average Metric: 7 / 11 (63.6%)
+2025/05/25 13:08:33 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 63.64 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 5'].
+2025/05/25 13:08:33 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55, 72.73, 45.45, 63.64]
+2025/05/25 13:08:33 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 72.73
+2025/05/25 13:08:33 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:08:33 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 9 / 10 =====
+2025/05/25 13:08:33 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Predictor 0
+i: You are tasked with a specialized role as an academic editor focusing on Turkish scholarly articles in the fields of computer science and artificial intelligence. Your objective is to thoroughly examine and categorize academic citations within these Turkish research papers based on their rhetorical intent. Each citation, along with its section title, will be provided in Turkish.
+
+Your mission is to classify each citation into one of the following six categories, which have been adapted from the Web of Science citation classification schema and refined for clarity:
+
+1. **background**: Citations that provide general context, historical information, or acknowledge foundational studies not directly built upon by the current research. These citations are typically found in sections like 'Giriş' (Introduction) or 'Literatür Taraması' (Literature Review).
+
+2. **basis**: Citations that serve as a fundamental pillar for the current study, where specific methods, algorithms, datasets, or equipment from the cited work are directly used or adapted. These are often located in sections such as 'Yöntem' (Methodology) or 'Veri Seti' (Dataset).
+
+3. **discuss**: Citations actively analyzed or critically evaluated within the study, often involving a detailed examination of arguments, findings, or theories. These are common in 'Tartışma' (Discussion) or 'Literatür Taraması' (Literature Review).
+
+4. **support**: Citations that reinforce or validate the current study's findings by demonstrating consistency with the cited work's results. Look for these in 'Bulgular' (Results) or 'Sonuçlar' (Conclusions).
+
+5. **differ**: Citations that highlight contrasting or differing results compared to the current study, offering alternative views. These typically appear in 'Bulgular' (Results) or 'Tartışma' (Discussion).
+
+6. **other**: Citations that cannot be confidently classified into the above categories due to insufficient information or lack of clear rhetorical intent.
+
+**Key Considerations**:
+- The text and section titles will be in Turkish, and your classification should be based on understanding this content.
+- The section title provides context but focus primarily on the citation's semantic content and rhetorical function.
+- This is a zero-shot classification task; rely on semantic understanding rather than pre-defined examples.
+
+**Input Format**:
+Citations are provided as JSON objects with fields for `id`, `citation`, and `section`, all in Turkish.
+
+**Output Format**:
+Return a JSON array of objects, each with the citation's `id` and its classified `intent`. Ensure the response is a valid JSON array without additional commentary.
+
+Example Input:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+Example Output:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please ensure your output is strictly formatted as a valid JSON array.
+p: Intent:
+
+
+Average Metric: 2.00 / 3 (66.7%):  27%|██▋       | 3/11 [00:10<00:29,  3.74s/it]2025/05/25 13:08:46 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:08:46 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 3.00 / 4 (75.0%):  36%|███▋      | 4/11 [00:13<00:26,  3.72s/it]2025/05/25 13:08:48 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:08:49 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 4.00 / 7 (57.1%):  64%|██████▎   | 7/11 [00:20<00:10,  2.74s/it]2025/05/25 13:08:58 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:08:58 ERROR dspy.utils.parallelizer: Error for Example({'citation': "N <L olduğu durumda formül (18)'den. (19) formül elde edilir: (", 'section': 'Materyal ve Metot', 'citation_intent': 'other'}) (input_keys={'section', 'citation'}): Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - Rate limit reached for gpt-4o in organization org-PZvJ2v7PySmwI18WRU4JH1cB on tokens per min (TPM): Limit 30000, Used 30000, Requested 1559. Please try again in 3.118s. Visit https://platform.openai.com/account/rate-limits to learn more.. Set `provide_traceback=True` for traceback.
+Average Metric: 6.00 / 10 (60.0%): 100%|██████████| 11/11 [00:31<00:00,  2.83s/it]
+2025/05/25 13:09:04 INFO dspy.evaluate.evaluate: Average Metric: 6.0 / 11 (54.5%)
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 54.55 with parameters ['Predictor 0: Instruction 1', 'Predictor 0: Few-Shot Set 4'].
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55, 72.73, 45.45, 63.64, 54.55]
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 72.73
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: ========================
+
+
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 10 / 10 =====
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Predictor 0
+i: Analyze and classify academic citations from Turkish research papers based on their rhetorical intent. Each citation, provided along with its section title in Turkish, should be categorized into one of the following six categories: "background," "basis," "discuss," "support," "differ," or "other." Use a zero-shot classification approach, focusing on the semantic content of the citation and its contextual placement within the section to determine the rhetorical intent. Provide a reasoning for each classification to ensure clarity in how the decision was made. Return the results as a JSON array with each citation's ID and its classified intent. Do not include any additional commentary or text outside the JSON array.
+p: Intent:
+
+
+Average Metric: 7.00 / 11 (63.6%): 100%|██████████| 11/11 [00:00<00:00, 6923.37it/s]
+Predictor 0
+i: You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+p: Intent:
+
+
+2025/05/25 13:09:04 INFO dspy.evaluate.evaluate: Average Metric: 7 / 11 (63.6%)
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 63.64 with parameters ['Predictor 0: Instruction 2', 'Predictor 0: Few-Shot Set 5'].
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55, 72.73, 45.45, 63.64, 54.55, 63.64]
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 72.73
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: =========================
+
+
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: ===== Trial 11 / 10 =====
+2025/05/25 13:09:04 INFO dspy.teleprompt.mipro_optimizer_v2: Evaluating the following candidate program...
+
+Average Metric: 8.00 / 8 (100.0%):  73%|███████▎  | 8/11 [00:11<00:04,  1.46s/it]2025/05/25 13:09:16 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:09:20 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 13:09:21 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Average Metric: 8.00 / 11 (72.7%): 100%|██████████| 11/11 [00:25<00:00,  2.31s/it]
+2025/05/25 13:09:29 INFO dspy.evaluate.evaluate: Average Metric: 8 / 11 (72.7%)
+2025/05/25 13:09:29 INFO dspy.teleprompt.mipro_optimizer_v2: Score: 72.73 with parameters ['Predictor 0: Instruction 0', 'Predictor 0: Few-Shot Set 5'].
+2025/05/25 13:09:29 INFO dspy.teleprompt.mipro_optimizer_v2: Scores so far: [54.55, 54.55, 45.45, 54.55, 54.55, 72.73, 45.45, 63.64, 54.55, 63.64, 72.73]
+2025/05/25 13:09:29 INFO dspy.teleprompt.mipro_optimizer_v2: Best score so far: 72.73
+2025/05/25 13:09:29 INFO dspy.teleprompt.mipro_optimizer_v2: =========================
+
+
+2025/05/25 13:09:29 INFO dspy.teleprompt.mipro_optimizer_v2: Returning best identified program with score 72.73!
+Optimizer çalıştırıldı ve program optimize edildi.
+
+--- Program Çıktısı ---
+Tahmin edilen intent: support
+Gerekçe: The citation states that the method used in the current study produces similar results to those found in the literature, as referenced by Çelik and Aydın (2022). The section title "Bulgular" (Results) indicates that this is part of the findings of the study. The citation is used to show that the current study's results are consistent with those of previous studies, thereby reinforcing or validating the current study's findings. This aligns with the intent of providing support.
+
+--- Optimize Edilmiş Prompt (Classifier) ---
+Optimize edilmiş programın türü: <class '__main__.ClassifyCitation'>
+Optimize edilmiş programın Classifier (ChainOfThought) modülü bulundu. Türü: <class 'dspy.predict.chain_of_thought.ChainOfThought'>
+ChainOfThought modülü içinde 'predict' (dspy.Predict modülü) bulundu.
+
+Internal Predict Modülünün Signature'ı (Talimatlar):
+StringSignature(citation, section -> reasoning, intent
+    instructions='You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.\nYour goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:\n1.  **background**:\n    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper\'s core work.\n    * **WoS Insight**: previously published research that orients the current study within a scholarly area.\n    * **Typical Turkish Sections**: \'Giriş\' (Introduction), \'Literatür Taraması\' (Literature Review), \'İlgili Çalışmalar\' (Related Work), \'Genel Bilgiler\' (General Information).\n    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.\n\n2.  **basis**:\n    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.\n    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work\n    * **Typical Turkish Sections**: \'Yöntem\' (Methodology), \'Materyal ve Metot\' (Material and Method), \'Model Tasarımı\' (Model Design), \'Veri Seti\' (Dataset), \'Uygulama\' (Implementation).\n    * **Key Idea**: The current study\'s methodology or execution directly and essentially depends on the content of the cited work.\n\n3.  **discuss**:\n    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work\'s importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.\n    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.\n    * **Typical Turkish Sections**: \'Literatür Taraması\' (Literature Review), \'Tartışma\' (Discussion), \'Bulgular ve Tartışma\' (Results and Discussion), \'İlgili Çalışmalar\' (Related Work).\n    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.\n\n4.  **support**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion), \'Doğrulama\' (Validation).\n    * **Key Idea**: The cited work\'s outcomes lend credibility and support to the current study\'s findings by demonstrating consistency.\n\n5.  **differ**:\n    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.\n    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.\n    * **Typical Turkish Sections**: \'Bulgular\' (Results), \'Sonuçlar\' (Results/Conclusion), \'Tartışma\' (Discussion).\n    * **Key Idea**: The cited work\'s *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study\'s findings.\n\n6.  **other**:\n    * **Description**: The citation\'s rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don\'t fit any other specific rhetorical function (e.g., a passing mention without clear intent).\n    * **WoS Insight**: Citations that are not classifiable into other specific categories.\n    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.\n\n**Important Considerations for Classification**:\n* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.\n* **Context is Key**: While the \'section\' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the \'citation\' text itself. A citation\'s intent might occasionally differ from its section\'s typical use.\n* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.\n\n**Input Format**:\nEach citation will be provided as a JSON object with the following fields:\n* `id`: A unique identifier for the citation (String).\n* `citation`: The citation sentence or excerpt **in Turkish** (String).\n* `section`: The title of the section in which the citation appears, **in Turkish** (String).\n\nAll citations will be presented as a JSON array.\nExample of Input Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",\n    "section": "Giriş"\n  },\n  {\n    "id": "unique_id_2",\n    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",\n    "section": "Yöntem"\n  }\n]\n\n**Expected Output Format**:\nThe output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.\nExample of Output Data Structure:\n[\n  {\n    "id": "unique_id_1",\n    "intent": "background"\n  },\n  {\n    "id": "unique_id_2",\n    "intent": "basis"\n  }\n]\n\nPlease return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.'
+    citation = Field(annotation=str required=True json_schema_extra={'desc': 'Atıf cümlesi', '__dspy_field_type': 'input', 'prefix': 'Citation:'})
+    section = Field(annotation=str required=True json_schema_extra={'desc': 'Bölüm başlığı', '__dspy_field_type': 'input', 'prefix': 'Section:'})
+    reasoning = Field(annotation=str required=True json_schema_extra={'desc': 'Niyet sınıflandırmasının adım adım gerekçesi.', '__dspy_field_type': 'output', 'prefix': 'Reasoning:'})
+    intent = Field(annotation=str required=True json_schema_extra={'desc': "Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'", '__dspy_field_type': 'output', 'prefix': 'Intent:'})
+)
+
+Sadece Talimatlar (Instructions):
+You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+1.  **background**:
+    * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+    * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+    * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+    * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+
+2.  **basis**:
+    * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+    * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+    * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+    * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+
+3.  **discuss**:
+    * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+    * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+    * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+    * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+
+4.  **support**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+    * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+
+5.  **differ**:
+    * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+    * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+    * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+    * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+
+6.  **other**:
+    * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+    * **WoS Insight**: Citations that are not classifiable into other specific categories.
+    * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+
+**Important Considerations for Classification**:
+* **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+* **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+* **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+
+**Input Format**:
+Each citation will be provided as a JSON object with the following fields:
+* `id`: A unique identifier for the citation (String).
+* `citation`: The citation sentence or excerpt **in Turkish** (String).
+* `section`: The title of the section in which the citation appears, **in Turkish** (String).
+
+All citations will be presented as a JSON array.
+Example of Input Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+    "section": "Giriş"
+  },
+  {
+    "id": "unique_id_2",
+    "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+    "section": "Yöntem"
+  }
+]
+
+**Expected Output Format**:
+The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+Example of Output Data Structure:
+[
+  {
+    "id": "unique_id_1",
+    "intent": "background"
+  },
+  {
+    "id": "unique_id_2",
+    "intent": "basis"
+  }
+]
+
+Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+
+Kullanılan Demo Sayısı (Internal Predict Modülü): 1
+Demolar:
+--- Demo 1 ---
+ Inputs:
+  citation: ancak Zerocoin gibi sıfır bilgi protokolü içermediğinden mixin (halkadaki imza) sayısına bağlı olarak takip edilme olasılığı daha yüksektir Wijaya et al., 2018) .
+  section: Karşılaştırma
+ Outputs:
+  reasoning: The citation discusses a comparison between a protocol that does not include a zero-knowledge protocol like Zerocoin and its implications on traceability based on the number of mixins. The section title "Karşılaştırma" (Comparison) suggests that the citation is used to highlight differences or contrasts. The citation specifically points out a higher likelihood of traceability, which implies a difference in outcomes or characteristics compared to Zerocoin. This aligns with the intent of highlighting differences.
+  intent: differ
+
+--- LM Son Çağrılar (Son 1) ---
+
+
+
+
+[2025-05-25T13:09:37.787426]
+
+System message:
+
+Your input fields are:
+1. `citation` (str): Atıf cümlesi
+2. `section` (str): Bölüm başlığı
+Your output fields are:
+1. `reasoning` (str): Niyet sınıflandırmasının adım adım gerekçesi.
+2. `intent` (str): Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## citation ## ]]
+{citation}
+
+[[ ## section ## ]]
+{section}
+
+[[ ## reasoning ## ]]
+{reasoning}
+
+[[ ## intent ## ]]
+{intent}
+
+[[ ## completed ## ]]
+In adhering to this structure, your objective is: 
+        You are an expert academic editor specializing in computer science and artificial intelligence. Your task is to meticulously analyze and classify academic citations from Turkish research papers based on their rhetorical intent. The citations and their corresponding section titles will be provided in Turkish.
+        Your goal is to classify each citation into one of the following six categories. These categories are inspired by the Web of Science (WoS) citation classification schema (Clarivate) and have been refined with details from their guidelines for enhanced clarity:
+        1.  **background**:
+            * **Description**: The cited work is referred to for general context, historical information, or to acknowledge foundational studies that are **not directly built upon** by the current research. These citations help set the stage, place the current study within a broader scholarly conversation, or might acknowledge a method/software that is not central to the current paper's core work.
+            * **WoS Insight**: previously published research that orients the current study within a scholarly area.
+            * **Typical Turkish Sections**: 'Giriş' (Introduction), 'Literatür Taraması' (Literature Review), 'İlgili Çalışmalar' (Related Work), 'Genel Bilgiler' (General Information).
+            * **Key Idea**: Provides broader context or acknowledges foundational knowledge that is not a direct methodological pillar for the current study.
+        
+        2.  **basis**:
+            * **Description**: The cited work provides a fundamental pillar for the current study. The current research **directly reports using or adapting the specific methods, algorithms, data sets, software, or equipment** described in the cited work for its own execution. These citations are central to how the research was designed and conducted. Studies usually rely on a relatively small number of such foundational works.
+            * **WoS Insight**: references that report the data sets, methods, concepts and ideas that the author is using for her work directly or on which the author bases her work
+            * **Typical Turkish Sections**: 'Yöntem' (Methodology), 'Materyal ve Metot' (Material and Method), 'Model Tasarımı' (Model Design), 'Veri Seti' (Dataset), 'Uygulama' (Implementation).
+            * **Key Idea**: The current study's methodology or execution directly and essentially depends on the content of the cited work.
+        
+        3.  **discuss**:
+            * **Description**: The cited work is actively and substantively discussed, analyzed, or critically evaluated within the current study. This can involve a detailed examination of its specific arguments, findings, theories, contributions, strengths, or weaknesses. The discussion often relates the cited work's importance or relevance to the current research, or compares/contrasts its approach beyond a simple statement of similar/dissimilar results.
+            * **WoS Insight**: references mentioned because the current study is going into a more detailed discussion.
+            * **Typical Turkish Sections**: 'Literatür Taraması' (Literature Review), 'Tartışma' (Discussion), 'Bulgular ve Tartışma' (Results and Discussion), 'İlgili Çalışmalar' (Related Work).
+            * **Key Idea**: The cited work is a subject of significant intellectual engagement, analysis, or critique, not just a simple reference for support or difference of findings.
+        
+        4.  **support**:
+            * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as being consistent with, and thereby reinforcing or validating, the results, claims, or conclusions of the current (citing) study.** The current study uses the cited work to show that its own findings are corroborated. These citations are generally few in number per study.
+            * **WoS Insight**: references which the current study reports to have similar results to. This may also refer to similarities in methodology or in some cases replication of results.
+            * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion), 'Doğrulama' (Validation).
+            * **Key Idea**: The cited work's outcomes lend credibility and support to the current study's findings by demonstrating consistency.
+        
+        5.  **differ**:
+            * **Description**: The findings, arguments, or **results reported in the cited work are directly compared with those of the current study and are presented as contrasting with, contradicting, or highlighting different perspectives or outcomes compared to those of the current (citing) study.** The current study uses the cited work to highlight how its own findings differ or offer an alternative view. These citations are also generally few in number per study.
+            * **WoS Insight**: references which the current study reports to have differing results to. This may also refer to differences in methodology or differences in sample sizes, affecting results.
+            * **Typical Turkish Sections**: 'Bulgular' (Results), 'Sonuçlar' (Results/Conclusion), 'Tartışma' (Discussion).
+            * **Key Idea**: The cited work's *results* are shown to diverge from, contradict, or present significantly different outcomes when compared to the current study's findings.
+        
+        6.  **other**:
+            * **Description**: The citation's rhetorical intent cannot be confidently determined from the provided excerpt and context. This category **explicitly includes very short citation phrases (e.g., 3-4 Turkish words) that lack sufficient semantic content to convey a clear purpose**, incomplete citation references, or mentions that don't fit any other specific rhetorical function (e.g., a passing mention without clear intent).
+            * **WoS Insight**: Citations that are not classifiable into other specific categories.
+            * **Key Idea**: Insufficient information for classification, the citation is semantically too weak for intent analysis, or it serves a purely bibliographic purpose without clear rhetorical intent in the given context.
+        
+        **Important Considerations for Classification**:
+        * **Language**: The `citation` text and `section` titles in the input JSON will be in **Turkish**. Your classification should be based on understanding this Turkish content.
+        * **Context is Key**: While the 'section' (Turkish section title) where the citation appears provides a strong contextual clue (typical Turkish section names are provided as hints for each category), the primary basis for classification should be the semantic content and rhetorical function of the 'citation' text itself. A citation's intent might occasionally differ from its section's typical use.
+        * **Zero-Shot Task**: This is a zero-shot classification task. Do not expect or use any pre-defined examples for learning within this prompt.
+        
+        **Input Format**:
+        Each citation will be provided as a JSON object with the following fields:
+        * `id`: A unique identifier for the citation (String).
+        * `citation`: The citation sentence or excerpt **in Turkish** (String).
+        * `section`: The title of the section in which the citation appears, **in Turkish** (String).
+        
+        All citations will be presented as a JSON array.
+        Example of Input Data Structure:
+        [
+          {
+            "id": "unique_id_1",
+            "citation": "Alanyazında bu konuda farklı yaklaşımlar mevcuttur (Yılmaz, 2020; Kaya, 2019).",
+            "section": "Giriş"
+          },
+          {
+            "id": "unique_id_2",
+            "citation": "Bu çalışmada, Demir ve ark. (2021) tarafından önerilen sinir ağı mimarisi temel alınmıştır.",
+            "section": "Yöntem"
+          }
+        ]
+        
+        **Expected Output Format**:
+        The output must be a JSON array of objects. Each object should contain the `id` of the citation and its classified `intent`.
+        Example of Output Data Structure:
+        [
+          {
+            "id": "unique_id_1",
+            "intent": "background"
+          },
+          {
+            "id": "unique_id_2",
+            "intent": "basis"
+          }
+        ]
+        
+        Please return your response strictly as a valid JSON array. Do not include any additional commentary, explanation, text, or formatting outside of the JSON array itself.
+
+
+User message:
+
+[[ ## citation ## ]]
+ancak Zerocoin gibi sıfır bilgi protokolü içermediğinden mixin (halkadaki imza) sayısına bağlı olarak takip edilme olasılığı daha yüksektir Wijaya et al., 2018) .
+
+[[ ## section ## ]]
+Karşılaştırma
+
+
+Assistant message:
+
+[[ ## reasoning ## ]]
+The citation discusses a comparison between a protocol that does not include a zero-knowledge protocol like Zerocoin and its implications on traceability based on the number of mixins. The section title "Karşılaştırma" (Comparison) suggests that the citation is used to highlight differences or contrasts. The citation specifically points out a higher likelihood of traceability, which implies a difference in outcomes or characteristics compared to Zerocoin. This aligns with the intent of highlighting differences.
+
+[[ ## intent ## ]]
+differ
+
+
+User message:
+
+[[ ## citation ## ]]
+Yöntemimiz, literatürdeki yaklaşımlarla benzer sonuçlar üretmektedir (Çelik ve Aydın, 2022).
+
+[[ ## section ## ]]
+Bulgular
+
+Respond with the corresponding output fields, starting with the field `[[ ## reasoning ## ]]`, then `[[ ## intent ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+Response:
+
+[[ ## reasoning ## ]]
+The citation states that the method used in the current study produces similar results to those found in the literature, as referenced by Çelik and Aydın (2022). The section title "Bulgular" (Results) indicates that this is part of the findings of the study. The citation is used to show that the current study's results are consistent with those of previous studies, thereby reinforcing or validating the current study's findings. This aligns with the intent of providing support.
+
+[[ ## intent ## ]]
+support
+
+[[ ## completed ## ]]
+
+
+
+
+
+
+Program tamamlandı. dspy.__version__ 2.6.24
+
+Process finished with exit code 0

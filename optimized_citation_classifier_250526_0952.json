@@ -1,0 +1,79 @@
+{
+  "classifier.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "citation": "Ayr\u0131ca ortaya \u00e7\u0131kan sonucun iyi oldu\u011funu s\u00f6ylemi\u015flerdir  . Yaman (2008) p-hub yerle\u015ftirme problemi i\u00e7in yerel aramaya dayal\u0131 bir sezgisel y\u00f6ntem kullanarak \u00e7\u00f6zm\u00fc\u015ft\u00fcr.",
+        "section": "Giri\u015f",
+        "reasoning": "The citation describes what Yaman (2008) did in their research, specifically stating that they \"solved the p-hub location problem using a local search-based heuristic method.\" This is a factual description of a previous work. In an \"Giri\u015f\" (Introduction) section, presenting what other researchers have done is a common way to provide context and background for the current study, establishing the existing landscape of research in the field. It is not indicating that the current work is directly building upon it (basis), discussing its methodology in detail, supporting its claims, or differing from its findings.",
+        "intent": "background"
+      },
+      {
+        "augmented": true,
+        "citation": "Ayr\u0131ca, giyilebilir ve di\u011fer IoT cihazlar\u0131, Ki\u015fisel Sa\u011fl\u0131k Kay\u0131tlar\u0131 (KSK\\PHR) ile ilgili olanlar da dahil olmak \u00fczere ilgili bilgileri toplayabilir ve ESK sistemlerine y\u00fckleyebilir [19] .",
+        "section": "Literat\u00fcr \u00d6zeti ve Problemin Tan\u0131m\u0131",
+        "reasoning": "The citation describes a known capability of wearable and IoT devices in collecting and uploading health-related information to EHR systems, attributing this information to reference [19]. The section title \"Literat\u00fcr \u00d6zeti ve Problemin Tan\u0131m\u0131\" (Literature Review and Problem Definition) indicates that this information is being presented as part of the existing knowledge base or context relevant to the problem being discussed. Therefore, the citation serves to provide background information on the capabilities of technology in the field.",
+        "intent": "background"
+      },
+      {
+        "augmented": true,
+        "citation": "G\u00f6\u011f\u00fcs kanseri \u00f6zellikle 40 \u2013 49 ya\u015f aras\u0131 kad\u0131nlarda s\u0131kl\u0131kla g\u00f6r\u00fclen ve d\u00fcnya genelinde kad\u0131nlar aras\u0131nda kanser kaynakl\u0131 en y\u00fcksek oranda \u00f6l\u00fcme sebep olan hastal\u0131kt\u0131r [2] .",
+        "section": "Giri\u015f",
+        "reasoning": "The citation provides a factual statement about breast cancer's prevalence and mortality, supported by reference [2]. This information serves to establish the importance or context of the topic within the \"Giri\u015f\" (Introduction) section. It is not a direct basis for the current work, nor is it being discussed in detail, supported by the current work, or differed from. It simply provides general background information.",
+        "intent": "background"
+      },
+      {
+        "augmented": true,
+        "citation": "Yap\u0131lan \u00e7al\u0131\u015fmalar incelendi\u011finde benzer \u015fekilde RF algoritmas\u0131n\u0131n sahte web sayflar\u0131n\u0131n tespit edilmesinde y\u00fcksek ba\u015far\u0131m sa\u011flad\u0131\u011f\u0131 g\u00f6r\u00fclmektedir Sahingoz vd., 2019; .",
+        "section": "Sonu\u00e7",
+        "reasoning": "The citation states that \"similarly, the RF algorithm provides high performance in detecting fake web pages\" and attributes this finding to Sahingoz et al., 2019. The phrase \"benzer \u015fekilde\" (similarly) suggests that the current work's findings or discussion align with or are reinforced by the cited work. In the \"Sonu\u00e7\" (Conclusion) section, citing previous work to show consistency or to validate the effectiveness of a method (like RF) strongly indicates that the cited work is used to support a claim or finding made in the current paper.",
+        "intent": "support"
+      },
+      {
+        "augmented": true,
+        "citation": "Ba\u015fka bir \u00e7al\u0131\u015fmada Li H. vd., geli\u015fmi\u015f derin \u00f6\u011frenme ve da\u011f\u0131t\u0131lm\u0131\u015f bilgi f\u00fczyonunu birle\u015ftirerek t\u0131kanma ve yeniden yap\u0131land\u0131rma sorunlar\u0131n\u0131 etkili bir \u015fekilde \u00e7\u00f6zebilen, da\u011f\u0131t\u0131lm\u0131\u015f bir kamera a\u011f\u0131 kullanan \u00e7ok hedefli bir izleme y\u00f6ntemi \u00f6nermi\u015flerdir [5] .",
+        "section": NaN,
+        "reasoning": "The citation describes what another study (Li H. et al.) proposed and achieved. The phrase \"Ba\u015fka bir \u00e7al\u0131\u015fmada Li H. vd., ... \u00f6nermi\u015flerdir\" (In another study, Li H. et al. proposed...) indicates that the cited work is being presented as part of the existing research landscape. This is a common way to provide context or background information about previous work in the field, setting the stage for the current study. It does not suggest the current work is directly building upon it (basis), discussing it in detail, supporting its claims, or differing from it.",
+        "intent": "background"
+      },
+      {
+        "augmented": true,
+        "citation": "Bunlar\u0131n ba\u015f\u0131nda do\u011frusal olmayan ters \u00e7\u00f6z\u00fcm y\u00f6ntemleri ve metasezgisel yakla\u015f\u0131mlar gibi optimizasyon y\u00f6ntemleri olmak \u00fczere [6] , Fourier, Hilbert ve dalgac\u0131k analizleri  , tomografik yakla\u015f\u0131mlar  , yapay sinir a\u011flar\u0131  , ve Euler dekonvol\u00fcsyonu   gibi analitik y\u00f6ntemler say\u0131labilir.",
+        "section": "Giri\u015f",
+        "reasoning": "The citation lists various methods, including \"optimization methods\" and cites [6] in relation to them. The phrase \"Bunlar\u0131n ba\u015f\u0131nda ... say\u0131labilir\" (Among these, ... can be counted\/listed) indicates that [6] is an example or a source for one of the mentioned categories (optimization methods). The section is \"Giri\u015f\" (Introduction). In an introduction, listing existing methods or previous work to provide context is a common practice. This suggests that [6] is being cited to provide background information on relevant techniques. It's not the direct basis for the current work, nor is it being discussed in detail or supported\/differed from.",
+        "intent": "background"
+      }
+    ],
+    "signature": {
+      "instructions": "You are a highly experienced academic researcher and literature reviewer, specializing in the domain of Artificial Intelligence and Rehabilitation, with a deep understanding of Turkish academic writing conventions. Your task is to meticulously analyze a given citation within its specific section from a Turkish academic paper. Based on the content and context, you must accurately classify the primary intent of the citation and provide a clear, concise reasoning for your decision.\n\nThe possible citation intents are:\n- `background`: The citation provides foundational knowledge, historical context, or general information relevant to the topic.\n- `other`: The citation serves a purpose not covered by 'background'.\n\nGiven the input fields `citation` and `section`, your output must consist of the fields `intent` and `reasoning`.",
+      "fields": [
+        {
+          "prefix": "Citation:",
+          "description": "Citation Context"
+        },
+        {
+          "prefix": "Section:",
+          "description": "Citation Section Title"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Citation classification step by step reasoning."
+        },
+        {
+          "prefix": "Intent:",
+          "description": "Please enter one of the following citation intent: 'background', 'basis', 'discuss', 'support', 'differ', 'other'"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "2.6.24",
+      "cloudpickle": "3.1"
+    }
+  }
+}

@@ -1,0 +1,289 @@
+/opt/homebrew/anaconda3/envs/tobb_tez_dspy/bin/python /Users/kemalsamikaraca/Desktop/EĞİTİM/TEZ/CEC/tobb_tez_dspy/dspy_citation_classifier.py
+2025/05/25 14:02:12 INFO dspy.teleprompt.mipro_optimizer_v2: 
+RUNNING WITH THE FOLLOWING LIGHT AUTO RUN SETTINGS:
+num_trials: 10
+minibatch: True
+num_fewshot_candidates: 6
+num_instruct_candidates: 3
+valset size: 100
+
+2025/05/25 14:02:12 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 1: BOOTSTRAP FEWSHOT EXAMPLES <==
+2025/05/25 14:02:12 INFO dspy.teleprompt.mipro_optimizer_v2: These will be used as few-shot example candidates for our program and for creating instructions.
+
+2025/05/25 14:02:12 INFO dspy.teleprompt.mipro_optimizer_v2: Bootstrapping N=6 sets of demonstrations...
+Optimizasyonu 967 eğitim örneği ile başlatılıyor...
+Bootstrapping set 1/6
+Bootstrapping set 2/6
+  0%|          | 0/967 [00:00<?, ?it/s]2025/05/25 14:02:20 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:02:29 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Mikroservis yazılım mimarileri monolit ve SOA mimarinin güçlü yönlerini bir araya getirir [8] .', 'section': 'Giriş', 'citation_intent': 'background'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  0%|          | 1/967 [00:16<4:33:08, 16.97s/it]2025/05/25 14:02:37 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:02:45 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Hedef tabanlı duygu analizine temel teşkil eden çalışmalar, hedef derecelemesi [25] ve hedef tarama   konularıyla başlamıştır.', 'section': 'LİTERATÜR TARAMASI (LITERATURE REVIEW)', 'citation_intent': 'basis'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  0%|          | 2/967 [00:33<4:28:06, 16.67s/it]2025/05/25 14:02:54 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:03:02 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Sınıflandırma algoritması olarak destek vektör makinesi algoritması kullanılmıştır [18] .', 'section': 'LİTERATÜR TARAMASI (LITERATURE REVIEW)', 'citation_intent': 'discuss'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  0%|          | 3/967 [00:50<4:30:25, 16.83s/it]2025/05/25 14:03:11 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:03:19 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': '2013 yılında, OWASP, XSS ve SQL Enjeksiyon açıklıklarını web tabanlı sistemlerdeki en ciddi açıklıklar olarak raporlamıştır 30] .', 'section': 'WEB SALDIRI YÖNTEMLERİ (METHODS OF WEB ATTACKS)', 'citation_intent': 'basis'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  0%|          | 4/967 [01:07<4:32:41, 16.99s/it]2025/05/25 14:03:27 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:03:36 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'ancak Zerocoin gibi sıfır bilgi protokolü içermediğinden mixin (halkadaki imza) sayısına bağlı olarak takip edilme olasılığı daha yüksektir Wijaya et al., 2018) .', 'section': 'Karşılaştırma', 'citation_intent': 'differ'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  1%|          | 5/967 [01:24<4:30:11, 16.85s/it]2025/05/25 14:03:44 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:03:52 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Bunların başında doğrusal olmayan ters çözüm yöntemleri ve metasezgisel yaklaşımlar gibi optimizasyon yöntemleri olmak üzere [9] , Fourier, Hilbert ve dalgacık analizleri  , tomografik yaklaşımlar  , yapay sinir ağları  , ve Euler dekonvolüsyonu   gibi analitik yöntemler sayılabilir.', 'section': 'Giriş', 'citation_intent': 'background'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  1%|          | 6/967 [01:40<4:26:06, 16.61s/it]2025/05/25 14:04:00 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:04:08 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Bununla birlikte, bu teknolojilerin, sağlıklı insanlara yerleştirildiğinde gelişmiş biliş, gece görüşü ve diğer gelişmiş algı gibi olağanüstü yetenekler elde etmek için kullanılabileceği de öne sürülmektedir (Antonio Regalado, 2021; .', 'section': 'YAPAY ZEKÂ TEMELLİ AKILLI REHABİLİTASYON TEKNİKLERİ', 'citation_intent': 'background'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  1%|          | 7/967 [01:56<4:21:41, 16.36s/it]2025/05/25 14:04:16 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:04:25 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Radyal Taban Fonksiyonlu Yapay Sinir Ağları (RTFA), jeofizik amaçlı olarak özellikle gravite  , sismik ve özdirenç araştırmalarında [38] uygulanmıştır, ancak literatürde doğal uçlaşma yöntemi uygulamaları bulunmamaktadır.', 'section': 'Giriş', 'citation_intent': 'background'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  1%|          | 8/967 [02:12<4:23:01, 16.46s/it]2025/05/25 14:04:33 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+2025/05/25 14:04:41 ERROR dspy.teleprompt.bootstrap: Failed to run or to evaluate example Example({'citation': 'Mustafa Turan (2011) , web madenciliği teknikleriyle makine öğrenme tekniklerini birlikte kullanarak hibrit bir yapı geliştirmiştir.', 'section': 'LİTERATÜR İNCELEMESİ (LITERATURE REVIEW)', 'citation_intent': 'background'}) (input_keys={'section', 'citation'}) with <function exact_match_metric at 0x105706710> due to Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors..
+  1%|          | 9/967 [02:29<4:23:40, 16.51s/it]2025/05/25 14:04:49 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+  1%|          | 9/967 [02:45<4:53:50, 18.40s/it]
+2025/05/25 14:04:57 INFO dspy.teleprompt.mipro_optimizer_v2: Error generating few-shot examples: Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+2025/05/25 14:04:57 INFO dspy.teleprompt.mipro_optimizer_v2: Running without few-shot examples.
+2025/05/25 14:04:57 INFO dspy.teleprompt.mipro_optimizer_v2: 
+==> STEP 2: PROPOSE INSTRUCTION CANDIDATES <==
+2025/05/25 14:04:57 INFO dspy.teleprompt.mipro_optimizer_v2: We will use the few-shot examples from the previous step, a generated dataset summary, a summary of the program code, and a randomly selected prompting tip to propose instructions.
+SOURCE CODE: StringSignature(citation, section -> reasoning, intent
+    instructions='Given the fields `citation`, `section`, produce the fields `intent`, `reasoning`.'
+    citation = Field(annotation=str required=True json_schema_extra={'desc': 'Atıf cümlesi', '__dspy_field_type': 'input', 'prefix': 'Citation:'})
+    section = Field(annotation=str required=True json_schema_extra={'desc': 'Bölüm başlığı', '__dspy_field_type': 'input', 'prefix': 'Section:'})
+    reasoning = Field(annotation=str required=True json_schema_extra={'desc': 'Niyet sınıflandırmasının adım adım gerekçesi.', '__dspy_field_type': 'output', 'prefix': 'Reasoning:'})
+    intent = Field(annotation=str required=True json_schema_extra={'desc': "Lütfen sadece şu etiketlerden birini kullan: 'background', 'basis', 'discuss', 'support', 'differ', 'other'", '__dspy_field_type': 'output', 'prefix': 'Intent:'})
+)
+
+class ClassifyCitation(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.citation_intent_signature = CitationIntentSignature
+        self.classifier = dspy.ChainOfThought(signature=CitationIntentSignature)
+    def forward(self, citation, section):
+        prediction = self.classifier(citation=citation, section=section)
+        return prediction
+
+DATA SUMMARY: The dataset explores the application of Artificial Intelligence (AI) in healthcare, specifically focusing on rehabilitation services. It is structured with academic and authoritative citations to provide a strong foundational background, examining the transformative potential of AI through technologies like neuroprosthetics and brain-computer interfaces. The thematic focus on deep learning and machine learning underscores a comprehensive analysis of AI's role, highlighting both practical applications and socio-economic implications, indicative of scholarly work aimed at informing policy or guiding further research.
+No demo candidates provided. Running without task demos.
+Using a randomly generated configuration for our grounded proposer.
+Selected tip: persona
+2025/05/25 14:04:57 INFO dspy.teleprompt.mipro_optimizer_v2: 
+Proposing N=3 instructions...
+
+2025/05/25 14:05:05 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Error getting program description. Running without program aware proposer. Error: Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+task_demos No task demos provided.
+2025/05/25 14:05:21 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Optimizasyonu sırasında bir hata oluştu: Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+Optimizasyon başarısız oldu, varsayılan program kullanılacak.
+
+--- Program Çıktısı ---
+Traceback (most recent call last):
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/llms/openai/openai.py", line 725, in completion
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/llms/openai/openai.py", line 653, in completion
+    ) = self.make_sync_openai_chat_completion_request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/litellm_core_utils/logging_utils.py", line 149, in sync_wrapper
+    result = func(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/llms/openai/openai.py", line 471, in make_sync_openai_chat_completion_request
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/llms/openai/openai.py", line 453, in make_sync_openai_chat_completion_request
+    raw_response = openai_client.chat.completions.with_raw_response.create(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_legacy_response.py", line 364, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_utils/_utils.py", line 279, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 929, in create
+    return self._post(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1276, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 949, in request
+    return self._request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1042, in _request
+    return self._retry_request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1091, in _retry_request
+    return self._request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1042, in _request
+    return self._retry_request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1091, in _retry_request
+    return self._request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1042, in _request
+    return self._retry_request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1091, in _retry_request
+    return self._request(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/openai/_base_client.py", line 1057, in _request
+    raise self._make_status_error_from_response(err.response) from None
+openai.RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/main.py", line 1838, in completion
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/main.py", line 1811, in completion
+    response = openai_chat_completions.completion(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/llms/openai/openai.py", line 736, in completion
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/utils.py", line 1159, in wrapper
+    result = original_function(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/main.py", line 3225, in completion
+    raise exception_type(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2232, in exception_type
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 279, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/adapters/json_adapter.py", line 69, in __call__
+    return super().__call__(lm, lm_kwargs, signature, demos, inputs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/adapters/chat_adapter.py", line 50, in __call__
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/adapters/chat_adapter.py", line 42, in __call__
+    return super().__call__(lm, lm_kwargs, signature, demos, inputs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/adapters/base.py", line 51, in __call__
+    outputs = lm(messages=inputs, **lm_kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/clients/base_lm.py", line 88, in __call__
+    response = self.forward(prompt=prompt, messages=messages, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/clients/lm.py", line 127, in forward
+    results = completion(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/clients/cache.py", line 232, in sync_wrapper
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/clients/lm.py", line 304, in litellm_completion
+    return litellm.completion(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/utils.py", line 1261, in wrapper
+    return litellm.completion_with_retries(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/main.py", line 3263, in completion_with_retries
+    return retryer(original_function, *args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/tenacity/__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/tenacity/__init__.py", line 378, in iter
+    result = action(retry_state)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/tenacity/__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/utils.py", line 1281, in wrapper
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/utils.py", line 1159, in wrapper
+    result = original_function(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/main.py", line 3225, in completion
+    raise exception_type(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2232, in exception_type
+    raise e
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 279, in exception_type
+    raise RateLimitError(
+litellm.exceptions.RateLimitError: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/kemalsamikaraca/Desktop/EĞİTİM/TEZ/CEC/tobb_tez_dspy/dspy_citation_classifier.py", line 154, in <module>
+    compiled_program = optimizer.compile(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/teleprompt/mipro_optimizer_v2.py", line 187, in compile
+    instruction_candidates = self._propose_instructions(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/teleprompt/mipro_optimizer_v2.py", line 468, in _propose_instructions
+    instruction_candidates = proposer.propose_instructions_for_program(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/propose/grounded_proposer.py", line 374, in propose_instructions_for_program
+    self.propose_instruction_for_predictor(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/propose/grounded_proposer.py", line 425, in propose_instruction_for_predictor
+    proposed_instruction = instruction_generator.forward(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/propose/grounded_proposer.py", line 253, in forward
+    instruct = self.generate_module_instruction(
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/predict/predict.py", line 85, in __call__
+    return super().__call__(**kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/utils/callback.py", line 326, in sync_wrapper
+    return fn(instance, *args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/primitives/program.py", line 32, in __call__
+    return self.forward(*args, **kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/predict/predict.py", line 146, in forward
+    completions = adapter(lm, lm_kwargs=config, signature=signature, demos=demos, inputs=kwargs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/adapters/chat_adapter.py", line 51, in __call__
+    return JSONAdapter()(lm, lm_kwargs, signature, demos, inputs)
+  File "/opt/homebrew/anaconda3/envs/tobb_tez_dspy/lib/python3.10/site-packages/dspy/adapters/json_adapter.py", line 75, in __call__
+    raise RuntimeError(
+RuntimeError: Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+2025/05/25 14:05:38 WARNING dspy.adapters.json_adapter: Failed to use structured output format, falling back to JSON mode.
+Program çalıştırılırken bir hata oluştu: Both structured output format and JSON mode failed. Please choose a model that supports `response_format` argument. Original error: litellm.RateLimitError: RateLimitError: OpenAIException - You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+
+--- Optimize Edilmiş Prompt (Classifier) ---
+Program optimize edilmedi (trainset boyutu yetersiz veya optimizasyon atlandı).
+
+--- LM Son Çağrılar (Son 1) ---
+
+
+
+
+[2025-05-25T14:04:57.770356]
+
+System message:
+
+Your input fields are:
+1. `observations` (str): Observations I have made about my dataset
+Your output fields are:
+1. `summary` (str): Two to Three sentence summary of only the most significant highlights of my observations
+All interactions will be structured in the following way, with the appropriate values filled in.
+
+[[ ## observations ## ]]
+{observations}
+
+[[ ## summary ## ]]
+{summary}
+
+[[ ## completed ## ]]
+In adhering to this structure, your objective is: 
+        Given a series of observations I have made about my dataset, please summarize them into a brief 2-3 sentence summary which highlights only the most important details.
+
+
+User message:
+
+[[ ## observations ## ]]
+The examples provided all come from the "GİRİŞ" (Introduction) section of a larger body of work which suggests that they are setting up the context or background for the main content. The topic being addressed largely revolved around the increasing demand for rehabilitation services influenced by global demographic changes, technological advancements, and the integration of artificial intelligence (AI) within the healthcare sector. The citations are predominantly academic and pertain to authoritative sources, supporting the background information with empirical data or previous research. The content suggests a focus on how AI is being utilized in various medical applications, particularly rehabilitation, demonstrating practical examples such as neuroprosthetics and brain-computer interface technology. Overall, the dataset seems structured to explore insights related to AI's role in healthcare advancements and possibly support the development of a scholarly review or a research study in this emerging field.The dataset is structured with sections and citation intents that focus on providing comprehensive background information about AI's application in healthcare. The focus lies heavily on rehabilitation and how AI technologies offer adaptable, reliable, and effective solutions for treatment. The recurrence of terms related to AI, such as "deep learning," "machine learning," and "neuroprosthetics," along with technological adaptability, signals a robust exploration of AI's potential and limitations. The academic citations are carefully selected to reinforce the claims made within the introduction segments, suggesting that the overarching aim could be to validate the deployment of AI in practical healthcare scenarios. The examples demonstrated are consistently using authoritative sources to add credibility, indicating the potential creation of an in-depth literature review or a strategic report on AI in rehabilitation medicine.The dataset showcases a thematic focus on "Yapay Zekâ" (Artificial Intelligence) and its applications in healthcare and societal development. The division into sections such as "YAPAY ZEKÂ," "SAĞLIKTA TOPLUM," and "REHABİLİTASYON HİZMETLERİ VE YAPAY ZEKÂ" indicates a structured examination of AI topics tailored to different societal and healthcare contexts. Each example appears as a background citation, emphasizing the foundational role of these references in setting up a research argument or discourse. The recurrent use of cutting-edge AI subfields like "Convolutional Neural Networks" and "Deep Learning" underlines a technology-centric narrative. The integration of AI into systemic and futuristic societal models like "Toplum 4.0" and "Toplum 5.0" suggests an analysis not just limited to technicalities but tied to broader socio-economic implications. The language is formally academic, and the intent appears to form a prelude to more detailed discussions, making these citations indispensable for establishing legitimacy in progressive AI-influenced societal frameworks. The citations source from recognized academic publications, ensuring a credible backdrop for the discourse on AI's transformative role, especially in healthcare and community enhancements.The dataset appears to be part of an academic or scientific work focused on the application of Artificial Intelligence (AI) in healthcare, with a specific emphasis on rehabilitation services. The use of consistently structured background citations indicates a thorough review process aimed at grounding the work in existing research. Each example provides empirical data from authoritative sources, which suggests that the dataset is laying a strong foundation for a detailed discussion on AI. The consistent theme across examples revolves around AI's adaptability and its growing role in enhancing medical and rehabilitation practices. The dataset potentially supports a research study or literature review on AI's integration into healthcare. The structured focus on sections and citation intents emphasizes the thoroughness with which the subject is explored, ensuring that the technological and practical implications of AI are effectively communicated.The dataset is characterized by its focus on Artificial Intelligence (AI) applications in healthcare, primarily rehabilitation. It places significant emphasis on how AI technologies are being utilized to enhance rehabilitation processes and patient monitoring. Each example within the dataset consistently utilizes academic and authoritative sources to provide background information, which strengthens the credibility and reliability of the presented data. This suggests that the section intends to set a comprehensive foundation for exploring AI's transformative potential in medical and societal contexts.
+
+The recurring themes emphasize the adaptability, reliability, and advanced capabilities of AI in understanding and addressing various medical conditions, particularly in rehabilitation services. Examples highlight how AI facilitates personalized treatment options, real-time feedback, and efficient patient monitoring systems—benefits that are crucial in modern healthcare settings.
+
+There is a prominent emphasis on technological terms such as deep learning and machine learning, indicating an exploration of advanced AI methodologies. The consistent use of these terms signals a deep dive into the technical aspects and benefits of AI, particularly regarding diagnostic and treatment capabilities.
+
+Overall, the academic tone and structured nature of the examples suggest that the dataset likely supports an academic or policy-oriented discussion, aiming to showcase the advancements, challenges, and opportunities of integrating AI into healthcare. The thematic focus on the impact of AI in technological adaptation and societal progression reinforces this narrative.The examples in the dataset predominantly examine the integration of Artificial Intelligence (AI) within the healthcare sector, with a specific emphasis on rehabilitation. Each example originates from academic or authoritative sources, underscoring a rigorous, research-based approach. This consistent use of citations suggests the dataset is part of an academic work, likely a literature review or a foundational background section for a more extensive study. The theme revolves around AI's transformative potential in medical applications, demonstrated by practical examples like AI-assisted diagnosis and rehabilitation technologies. The content is structured under sections that hint at both the technical depth and practical implications of AI in healthcare, suggesting a nuanced analysis of AI's role in future societal frameworks. Language is formal and rich with technological terminology, indicating a targeted audience of academics or professionals in the field. Overall, the dataset seems aimed at establishing a robust academic discourse regarding the implications and innovations brought by AI in medical settings, especially rehabilitation.The dataset focuses predominantly on AI-driven rehabilitation techniques within healthcare, particularly emphasizing practical implementations. The examples maintain a consistent use of academic language and authoritative citations, which enhances both credibility and depth in the discussion. Notably, two key themes emerge: robot-assisted therapy and devices like the Stewart Platform, which demonstrates the technological applications in real-world rehabilitation settings. The citation intent is largely 'background' or 'other', suggesting these excerpts serve an introductory or supportive role, framing a larger narrative about AI's transformative impact. The examples hint at an approach that not only addresses technical and practical aspects of AI in rehabilitation but also considers socio-economic implications, potentially linking research to broader societal or policy discussions. Additionally, the dataset is structured under the "YAPAY ZEKÂ TEMELLİ AKILLI REHABİLİTASYON TEKNİKLERİ" section, underlining a targeted focus on AI-enhanced rehabilitation methods. These elements collectively indicate a comprehensive examination aimed at detailing AI's role in advancing healthcare solutions and rehabilitation practices.The dataset is heavily focused on the incorporation of Artificial Intelligence (AI) into rehabilitation within the healthcare sector. Each example points to AI’s adaptable and cost-efficient solutions for enhancing rehabilitation methods, reflecting its transformative potential. A significant emphasis is placed on using AI technologies to improve treatment outcomes through personalized and scalable approaches. The citations predominantly serve as background context, suggesting an intent to establish a foundational understanding for a more extensive research discussion. The academic language and consistent sourcing from authoritative references underscore a scholarly tone, likely aimed at informing policy decisions or academic inquiry. The use of terms like "neuroprosthetics," "deep learning," and "machine learning" underlines a technological deep dive, indicating the dataset’s objective to explore both practical applications and theoretical insights into AI’s role in modern healthcare services. The examples appear to converge on a central theme of AI enhancing medical practices, particularly emphasizing rehabilitation's adaptability and reliability. Collectively, these observations suggest a comprehensive exploration aimed at validating AI’s efficacy and practicality in health tech innovations and advancements.The dataset is focused on the theme of Artificial Intelligence (AI) in healthcare, specifically within the realm of rehabilitation services. Key observations include:
+
+1. **Background Citations**: Every example cited in the dataset serves as a background source, indicating that the objective is to establish a comprehensive and authoritative context for discussions on AI's role in healthcare.
+
+2. **AI in Rehabilitation**: The primary emphasis is on AI-driven approaches in rehabilitation. Examples suggest the use of AI technologies such as brain-computer interfaces and neuroprosthetics that enhance patient recovery and diagnostics.
+
+3. **Technological Integration**: The dataset involves technological methods like deep learning and machine learning, demonstrating the advanced nature of AI applications in healthcare.
+
+4. **Academic and Authoritative Sources**: The dataset consistently uses academic citations, adding to the credibility and suggesting that it serves a scholarly purpose, likely as part of a literature review or introduction in a larger study on AI applications.
+
+5. **Structured and Technical Language**: Formal language with frequent use of technical terminology points to a target audience of researchers and professionals familiar with AI and healthcare technologies.
+
+6. **Comprehensive View**: The dataset likely supports a broad examination of AI’s impact in medical practices, covering aspects like improvement in rehabilitation processes, personalized treatments, and societal implications.
+
+These observations point towards an academic pursuit, possibly to inform policy or guide scholarly inquiries into AI-enhanced rehabilitation practices.The dataset examples focus exclusively on the background information of AI applications in rehabilitation techniques within the healthcare sector. Each example serves as an academic citation from authoritative sources, reinforcing the reliability and scholarly nature of the content. The recurring themes of upper extremity movement detection and hybrid EEG-BCI systems indicate a particular interest in non-invasive and minimally invasive AI technologies. The dataset exemplifies the convergence of AI with neuroprosthetics and patient monitoring for enhanced rehabilitation outcomes. The structured nature and formal tone of the examples suggest targeting the academic community or policy makers, aiming for a detailed discourse on AI advancements in healthcare. Furthermore, the dominance of technological terms like EEG, ECoG, and MEA highlights the dataset's intent to explore AI's technical and practical implications in medical scenarios. These observations collectively suggest that the dataset supports academic research or literature reviews focused on innovative AI solutions in the field of rehabilitation medicine.
+
+Respond with the corresponding output fields, starting with the field `[[ ## summary ## ]]`, and then ending with the marker for `[[ ## completed ## ]]`.
+
+
+Response:
+
+[[ ## summary ## ]]
+The dataset explores the application of Artificial Intelligence (AI) in healthcare, specifically focusing on rehabilitation services. It is structured with academic and authoritative citations to provide a strong foundational background, examining the transformative potential of AI through technologies like neuroprosthetics and brain-computer interfaces. The thematic focus on deep learning and machine learning underscores a comprehensive analysis of AI's role, highlighting both practical applications and socio-economic implications, indicative of scholarly work aimed at informing policy or guiding further research.
+
+[[ ## completed ## ]]
+
+
+
+
+
+
+Program tamamlandı. dspy.__version__ 2.6.24
+
+Process finished with exit code 0
