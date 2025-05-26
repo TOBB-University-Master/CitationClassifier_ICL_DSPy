@@ -187,7 +187,7 @@ save_path = "optimized_citation_classifier.json"  # Kaydettiğiniz dosyanın yol
 # Initialization
 # model = 'openai/gpt-4o-mini'
 # model = 'openai/gpt-4o'
-# lm = dspy.LM(model, api_key='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')
+# lm = dspy.LM(model, api_key='sk-proj-XXXXXXXX')
 model = 'gemini/gemini-2.5-flash-preview-05-20'
 lm = dspy.LM(model, api_key='AIzaSyD70GnTv82tXv0boDCfJivSC4PZ5B2q9Oo')
 
